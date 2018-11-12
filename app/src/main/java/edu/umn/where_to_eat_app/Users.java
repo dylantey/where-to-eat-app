@@ -1,27 +1,29 @@
 package edu.umn.where_to_eat_app;
 
+import android.content.Context;
 import java.util.HashMap;
 
 public class Users {
 
-    private static HashMap<String, String> users = new HashMap<>();
+    private static java.util.Map<String, String> users = new HashMap<>();
+
+    public static final int OK = 1;
+    public static final int USER_TAKEN = -1;
+    public static final int USER_BLANK = -2;
+    public static final int PASS_BLANK = -3;
+    public static final int BOTH_BLANK = -4;
 
     private static String currentUser = null;
 
     public Users () {
-        users.put("Ryan", "01234");
-        users.put("Alex", "02468");
-        users.put("Abdirahman", "abcde");
-        users.put("Dylan", "69420");
-        users.put("Nick", "password");
+        users.put("Ryan",       "01234");
+        users.put("Alex",       "02468");
+        users.put("Abdirahman", "qwert");
+        users.put("Dylan",      "69420");
+        users.put("Nick",       "password");
     }
 
     public static int createAccount(String username, String password) {
-        int OK = 1;
-        int USER_TAKEN = -1;
-        int USER_BLANK = -2;
-        int PASS_BLANK = -3;
-        int BOTH_BLANK = -4;
         if(username.equals("") && password.equals("")) { return BOTH_BLANK; }
         if(username.equals("")) { return USER_BLANK; }
         if(password.equals("")) { return PASS_BLANK; }

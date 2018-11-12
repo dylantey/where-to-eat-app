@@ -25,7 +25,6 @@ public class LoginScreen extends AppCompatActivity {
 
         loginButton.setOnClickListener((e) -> login(inputUsername, inputPassword));
 
-        new Users();
     }
 
     @Override
