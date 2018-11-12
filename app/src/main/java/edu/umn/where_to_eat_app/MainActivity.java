@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.profile) {
             fragment = new ProfilePage();
         } else if (id == R.id.create_account) {
-
+            fragment = new CreateAnAccount();
         } else if (id == R.id.notification) {
 
         } else if (id == R.id.settings) {
