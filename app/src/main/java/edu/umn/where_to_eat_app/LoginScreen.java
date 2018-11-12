@@ -9,11 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.HashMap;
-
 public class LoginScreen extends AppCompatActivity {
-
-    private HashMap<String, String> users = new HashMap<String, String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +56,4 @@ public class LoginScreen extends AppCompatActivity {
             inputUsername.requestFocus();
         }
     }
-
-
 }
