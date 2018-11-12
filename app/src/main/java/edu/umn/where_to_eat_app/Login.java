@@ -1,13 +1,11 @@
 package edu.umn.where_to_eat_app;
 
-import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 public class Login extends AppCompatActivity {
-
-    private boolean loggedIn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,38 +13,36 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.login);
 
         Button loginButton = findViewById(R.id.loginButton);
-        Button registerButton = findViewById(R.id.loginButton);
+        Button registerButton = findViewById(R.id.registerButton);
 
-        loginButton.setOnClickListener((e) -> {
-            setFragment("login");
-        });
-
-        registerButton.setOnClickListener((e) -> {
-            setFragment("register");
-        });
+        loginButton.setOnClickListener((e) -> setActivity("login"));
+        registerButton.setOnClickListener((e) -> setActivity("register"));
     }
 
-    protected boolean getLoggedIn() { return loggedIn;}
+    @Override
+    public void onBackPressed() {
+        return;
+    }
 
-    private void setFragment(String s) {
-        Fragment fragment = null;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent resultIntent) {
+        if(requestCode == 10) {
+            if(resultCode == 1) {
+                finish();
+            }
+        }
+    }
 
-        switch(s){
+    private void setActivity(String s) {
+        switch(s) {
             case "login":
-                fragment = new LoginScreen();
+                startActivityForResult(new Intent(Login.this, LoginScreen.class), 10);
                 break;
             case "register":
-                fragment = new RegisterScreen();
+                startActivity(new Intent(Login.this, RegisterScreen.class));
                 break;
             default:
                 break;
-        }
-
-        // replacing the fragment
-        if(fragment != null) {
-            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame, fragment);
-            ft.commit();
         }
     }
 }
