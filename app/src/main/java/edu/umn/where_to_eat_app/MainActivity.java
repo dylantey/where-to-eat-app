@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity
 
         fab.hide();
 
+        // V COMMENT OUT THIS CODE TO SKIP LOGIN V
         startActivity(new Intent(MainActivity.this, Login.class));
     }
 
