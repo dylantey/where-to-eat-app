@@ -7,32 +7,13 @@
         <menu>
             <item
                 android:id="@+id/home"
-                android:icon="@drawable/ic_menu_camera"
+                android:icon="@drawable/ic_home_black_24dp"
                 android:title="Home" />
             <item
                 android:id="@+id/profile"
-                android:icon="@drawable/ic_menu_gallery"
+                android:icon="@drawable/ic_person_black_24dp"
                 android:title="Profile" />
-            <item
-                android:id="@+id/create_account"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="Create Account" />
-            <item
-                android:id="@+id/notification"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="Notification" />
         </menu>
     </item>
-
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/settings"
-            android:icon="@drawable/ic_menu_share"
-            android:title="Settings" />
-        <item
-            android:id="@+id/rate_us"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Rate Us" />
-    </group>
 
 </menu>

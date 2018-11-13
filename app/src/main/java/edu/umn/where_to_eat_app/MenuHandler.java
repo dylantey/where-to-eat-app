@@ -14,17 +14,9 @@ public class MenuHandler {
         Fragment fragment = null;
 
         if (id == R.id.home) {
-
+            fragment = new JoinARoom();
         } else if (id == R.id.profile) {
             fragment = new ProfilePage();
-        } else if (id == R.id.create_account) {
-
-        } else if (id == R.id.notification) {
-
-        } else if (id == R.id.settings) {
-
-        } else if (id == R.id.rate_us) {
-
         }
 
         return fragment;
