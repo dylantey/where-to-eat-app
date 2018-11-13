@@ -14,7 +14,7 @@ public class MenuHandler {
         Fragment fragment = null;
 
         if (id == R.id.home) {
-            fragment = new JoinARoom();
+            fragment = null;
         } else if (id == R.id.profile) {
             fragment = new ProfilePage();
         }

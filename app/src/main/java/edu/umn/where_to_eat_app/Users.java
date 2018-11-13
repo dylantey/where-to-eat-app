@@ -5,41 +5,39 @@ import java.util.HashMap;
 
 public class Users {
 
-    private static java.util.Map<String, String> users = new HashMap<>();
-
-    public static final int OK = 1;
-    public static final int USER_TAKEN = -1;
-    public static final int USER_BLANK = -2;
-    public static final int PASS_BLANK = -3;
-    public static final int BOTH_BLANK = -4;
+    private static HashMap<String, String[]> users = new HashMap<>();
 
     private static String currentUser = null;
 
     public Users () {
-        users.put("Ryan",       "01234");
-        users.put("Alex",       "02468");
-        users.put("Abdirahman", "qwert");
-        users.put("Dylan",      "69420");
-        users.put("Nick",       "password");
+        users.put("clar1513", new String[]{"01234", "Ryan"});
+        users.put("gille407", new String[]{"02468", "Alex"});
+        users.put("hajix007", new String[]{"qwert", "Abdirahman"});
+        users.put("tey00002", new String[]{"69420", "Dylan"});
+        users.put("tuttl065", new String[]{"password", "Nick"});
     }
 
-    public static int createAccount(String username, String password) {
-        if(username.equals("") && password.equals("")) { return BOTH_BLANK; }
-        if(username.equals("")) { return USER_BLANK; }
-        if(password.equals("")) { return PASS_BLANK; }
-        if(users.containsKey(username)) { return USER_TAKEN; }
-        else {
-            users.put(username,password);
+    public static String createAccount(String username, String password, String name) {
+        String ret = "Error:\n";
+        if(username.equals(""))         { ret += "\nUsername required."; }
+        if(name.equals(""))             { ret += "\nName required."; }
+        if(password.equals(""))         { ret += "\nPassword required."; }
+        if(users.containsKey(username)) { ret += "\nUsername taken."; }
+        if(ret.equals("Error:\n")) {
+            users.put(username,new String[]{password, name});
+            return "OK";
+        } else {
+            return ret;
         }
-        return OK;
     }
 
     public static boolean checkCredentials(String username, String password) {
         if(!users.containsKey(username)) { return false; }
-        if(users.get(username).equals(password)) { return true; }
+        if(users.get(username)[0].equals(password)) { return true; }
         return false;
     }
 
     public static final String getCurrentUser() { return currentUser; }
+    public static final String getCurrentName() { return users.get(currentUser)[1]; }
     public static void setCurrentUser(String s) { currentUser = s; }
 }

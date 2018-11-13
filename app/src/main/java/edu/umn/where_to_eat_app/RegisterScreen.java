@@ -17,6 +17,7 @@ public class RegisterScreen extends AppCompatActivity {
 
         Button registerButton = findViewById(R.id.loginButton);
         EditText inputUsername = findViewById(R.id.inputUsername);
+        EditText inputName = findViewById(R.id.inputName);
         EditText inputPassword = findViewById(R.id.inputPassword);
         EditText confirmPassword = findViewById(R.id.inputPassword2);
 
@@ -24,24 +25,12 @@ public class RegisterScreen extends AppCompatActivity {
             if(!inputPassword.getText().toString().equals(confirmPassword.getText().toString())) {
                 alert("Passwords do not match!");
             } else {
-                int val = createAccount(inputUsername.getText().toString(),
-                        inputPassword.getText().toString());
-                switch(val) {
-                    case Users.OK:
-                        finish();
-                        break;
-                    case Users.USER_TAKEN:
-                        alert("Username is already taken!");
-                        break;
-                    case Users.USER_BLANK:
-                        alert("Please fill in the username field!");
-                        break;
-                    case Users.PASS_BLANK:
-                        alert("Please fill in the password field!");
-                        break;
-                    case Users.BOTH_BLANK:
-                        alert("Please fill in both the username and password fields!");
-                        break;
+                String val = createAccount(inputUsername.getText().toString(),
+                        inputPassword.getText().toString(), inputName.getText().toString());
+                if(val.equals("OK")) {
+                    finish();
+                } else {
+                    alert(val);
                 }
             }
         });
@@ -54,8 +43,8 @@ public class RegisterScreen extends AppCompatActivity {
         return true;
     }
 
-    private int createAccount(String username, String password) {
-        return Users.createAccount(username, password);
+    private String createAccount(String username, String password, String name) {
+        return Users.createAccount(username, password, name);
     }
 
     private void alert(String message) {
