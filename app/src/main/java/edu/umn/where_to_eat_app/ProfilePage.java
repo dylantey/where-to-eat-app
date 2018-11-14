@@ -125,7 +125,7 @@ public class ProfilePage extends Fragment{
         getActivity().setTitle("Profile Page");
 
         TextView name = getView().findViewById(R.id.textView);
-        name.setText(Users.getCurrentUser());
+        name.setText(Users.getCurrentName());
 
         getView().setOnKeyListener( new View.OnKeyListener()
         {
