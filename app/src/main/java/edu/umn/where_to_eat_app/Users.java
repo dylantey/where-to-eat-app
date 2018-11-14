@@ -10,6 +10,7 @@ public class Users {
     private static String currentUser = null;
 
     public Users () {
+        users.put("???", new String[]{"???", "???"});
         users.put("clar1513", new String[]{"01234", "Ryan"});
         users.put("gille407", new String[]{"02468", "Alex"});
         users.put("hajix007", new String[]{"qwert", "Abdirahman"});
