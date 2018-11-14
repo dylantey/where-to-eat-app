@@ -1,13 +1,11 @@
 package edu.umn.where_to_eat_app;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.app.Fragment;
@@ -17,12 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,7 +37,7 @@ public class MainActivity extends AppCompatActivity
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String user = prefs.getString("User", "");
 
-        if(!user.equals("")) {
+        if(!user.equals("") && Users.userExists(user)) {
             Users.setCurrentUser(user);
             TextView welcome = findViewById(R.id.welcomeText);
             welcome.setText("Welcome, " + Users.getCurrentName() + "!");
@@ -52,12 +45,34 @@ public class MainActivity extends AppCompatActivity
             startActivityForResult(new Intent(MainActivity.this, Login.class), 1);
         }
 
+        // More stuff
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+            public void onDrawerOpened(View drawerView) {
+
+                TextView name = findViewById(R.id.navName);
+                name.setText(Users.getCurrentName());
+                TextView userName = findViewById(R.id.navUser);
+                userName.setText("@" + Users.getCurrentUser());
+
+                super.onDrawerOpened(drawerView);
+
+                name.animate().alpha(1).setDuration(250);
+                userName.animate().alpha(1).setDuration(250);
+            }
+
+            public void onDrawerClosed(View drawerView) {
+                TextView name = findViewById(R.id.navName);
+                TextView userName = findViewById(R.id.navUser);
+                name.setAlpha(0f);
+                userName.setAlpha(0f);
+                super.onDrawerClosed(drawerView);
+            }
+        };
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -113,7 +128,6 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
@@ -136,7 +150,7 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = MenuHandler.getFragment(item);
 
         if(fragment != null) {
-            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame, fragment);
             ft.commit();
         } else {
