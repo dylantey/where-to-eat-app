@@ -1,7 +1,11 @@
 package edu.umn.where_to_eat_app;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -23,9 +27,16 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private SharedPreferences prefs = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // User stuff
+        new Users();
         Users.setCurrentUser("???");
+
+        // Initial stuff
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -33,20 +44,20 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-            this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        new Users();
 
-        // V FLAG TO SKIP LOGIN V
-        boolean skipLogin = false;
+        // Get saved data
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String user = prefs.getString("User", "");
 
-        if(skipLogin) {
-            Users.setCurrentUser("Ryan");
+        if(!user.equals("")) {
+            Users.setCurrentUser(user);
             TextView welcome = findViewById(R.id.welcomeText);
             welcome.setText("Welcome, " + Users.getCurrentName() + "!");
         } else {
@@ -58,8 +69,14 @@ public class MainActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent resultIntent) {
         if(requestCode == 1) {
             if(resultCode == 1) {
+                // Set welcome text
                 TextView welcome = findViewById(R.id.welcomeText);
                 welcome.setText("Welcome, " + Users.getCurrentName() + "!");
+
+                // Set prefs to user
+                SharedPreferences.Editor edit = prefs.edit();
+                edit.putString("User", Users.getCurrentUser());
+                edit.apply();
             }
         }
     }
@@ -78,8 +95,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-        ((TextView) findViewById(R.id.navName)).setText(Users.getCurrentName());
-        ((TextView) findViewById(R.id.navUser)).setText("@" + Users.getCurrentUser());
         return true;
     }
 
@@ -101,6 +116,23 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if(id == R.id.logout) {
+            // Resets prefs
+            SharedPreferences.Editor edit = prefs.edit();
+            edit.putString("User", "");
+            edit.apply();
+
+            // Closes drawer
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+
+            // Recreates the activity
+            recreate();
+            return true;
+        }
+
         Fragment fragment = MenuHandler.getFragment(item);
 
         if(fragment != null) {
