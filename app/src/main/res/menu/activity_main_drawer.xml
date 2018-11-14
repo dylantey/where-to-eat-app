@@ -17,9 +17,12 @@
                 android:id="@+id/friendsprofile"
                 android:icon="@drawable/ic_people_black_24dp"
                 android:title="Friends" />
+<<<<<<< HEAD
             <item
                 android:id="@+id/logout"
                 android:title="Logout" />
+=======
+>>>>>>> c6313321dbe3a53d257aaab30a59d92c387c6f72
         </menu>
     </item>
 

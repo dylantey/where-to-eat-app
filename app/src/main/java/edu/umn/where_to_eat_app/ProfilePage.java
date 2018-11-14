@@ -3,6 +3,7 @@ package edu.umn.where_to_eat_app;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -124,7 +125,25 @@ public class ProfilePage extends Fragment{
         getActivity().setTitle("Profile Page");
 
         TextView name = getView().findViewById(R.id.textView);
-        name.setText(Users.getCurrentUser());
+        name.setText(Users.getCurrentName());
+
+        getView().setOnKeyListener( new View.OnKeyListener()
+        {
+            @Override
+            public boolean onKey( View v, int keyCode, KeyEvent event )
+            {
+                if( keyCode == KeyEvent.KEYCODE_BACK )
+                {
+                    for (Fragment f:getActivity().getSupportFragmentManager().getFragments()) {
+                        if (f!=null) {
+                            getActivity().getSupportFragmentManager().beginTransaction().remove(f).commit();
+                        }
+                    }
+                    return true;
+                }
+                return false;
+            }
+        } );
 
     }
 }
