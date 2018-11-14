@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item android:title="Where-To-Eat App">
+    <item android:title="Menu">
         <menu>
+            <group>
             <item
                 android:id="@+id/home"
                 android:icon="@drawable/ic_home_black_24dp"
@@ -17,10 +18,10 @@
                 android:id="@+id/friendsprofile"
                 android:icon="@drawable/ic_people_black_24dp"
                 android:title="Friends" />
-            <item
-                android:id="@+id/logout"
-                android:title="Logout" />
+            </group>
         </menu>
     </item>
-
+    <item
+        android:id="@+id/logout"
+        android:title="Logout" />
 </menu>

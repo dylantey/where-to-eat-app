@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity
         // Initial stuff
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("Home");
 
         // Get saved data
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -78,6 +80,20 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // Setup button events
+        Button createRoomButton = findViewById(R.id.createRoomButton);
+        Button joinRoomButton = findViewById(R.id.joinRoomButton);
+
+        createRoomButton.setOnClickListener((e) -> {
+            // TODO: Go to create room fragment
+        });
+
+        joinRoomButton.setOnClickListener((e) -> {
+            // TODO: Go to join room fragment
+        });
+
+        // Burger
     }
 
     @Override
@@ -110,7 +126,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        return false;
     }
 
     @Override
@@ -157,6 +173,7 @@ public class MainActivity extends AppCompatActivity
             for (Fragment f:getSupportFragmentManager().getFragments()) {
                 if (f!=null) {
                     getSupportFragmentManager().beginTransaction().remove(f).commit();
+                    setTitle("Home");
                 }
             }
         }
