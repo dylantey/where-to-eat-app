@@ -1,6 +1,5 @@
 package edu.umn.where_to_eat_app;
 
-import android.content.Context;
 import java.util.HashMap;
 
 public class Users {
@@ -41,4 +40,6 @@ public class Users {
     public static final String getCurrentUser() { return currentUser; }
     public static final String getCurrentName() { return users.get(currentUser)[1]; }
     public static void setCurrentUser(String s) { currentUser = s; }
+
+    public static boolean userExists(String s) { return users.containsKey(s); }
 }
