@@ -17,6 +17,8 @@ public class MenuHandler {
             fragment = null;
         } else if (id == R.id.profile) {
             fragment = new ProfilePage();
+        } else if (id == R.id.friendsprofile) {
+            fragment = new friends();
         }
 
         return fragment;
