@@ -22,7 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/p1_round_b" />
 
     <TextView
         android:id="@+id/welcomeText"
@@ -52,7 +52,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="4dp"
+        android:background="@color/darkRed"
         android:text="Join a room"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/createRoomButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +71,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="64dp"
+        android:background="@color/darkRed"
         android:text="Create a room"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

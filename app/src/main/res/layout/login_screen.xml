@@ -4,82 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
-    android:clickable="true">
+    android:background="#FFF">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/loginButton"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/loginUsernameForm"
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="32dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/loginPasswordForm"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/registerText1"
+            <LinearLayout
+                android:id="@+id/loginUsernameForm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Username"
-                android:textColor="@color/darkRed"
-                android:textSize="24sp" />
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/loginPasswordForm"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <EditText
-                android:id="@+id/inputUsername"
+                <TextView
+                    android:id="@+id/registerText1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Username"
+                    android:textColor="@color/darkRed"
+                    android:textSize="24sp" />
+
+                <EditText
+                    android:id="@+id/inputUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
+
+            <LinearLayout
+                android:id="@+id/loginPasswordForm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/loginButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/loginUsernameForm">
 
+                <TextView
+                    android:id="@+id/registerText3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Password"
+                    android:textColor="@color/darkRed"
+                    android:textSize="24sp" />
+
+                <EditText
+                    android:id="@+id/inputPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPassword" />
+
+            </LinearLayout>
         </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="64dp" />
-
-        <LinearLayout
-            android:id="@+id/loginPasswordForm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/loginButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loginUsernameForm">
-
-            <TextView
-                android:id="@+id/registerText3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Password"
-                android:textColor="@color/darkRed"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/inputPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPassword" />
-
-        </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/loginButton"
