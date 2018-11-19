@@ -30,6 +30,9 @@ public class MainActivity extends AppCompatActivity
         new Users();
         Users.setCurrentUser("???");
 
+        // Init Restaurants
+        new Restaurants();
+
         // Initial stuff
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
