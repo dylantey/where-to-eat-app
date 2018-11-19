@@ -17,15 +17,14 @@ public class Restaurants {
 
     public Restaurants() {
         restaurantArrayList.add(new Restaurant("Applebee's",
-                "615 Washington Ave SE, Minneapolis, MN 55414", 0.2, 2.8,
+                "615 Washington Ave SE, Minneapolis, MN 55414", 0.2, 2.8, R.drawable.resimg_applebees,
                 type.BAR, type.SIT_DOWN, type.CASUAL, type.BURGERS, type.AMERICAN));
         restaurantArrayList.add(new Restaurant("Haiku",
-                "620 Washington Ave SE, Minneapolis, MN 55414", 0.2, 4.0,
+                "620 Washington Ave SE, Minneapolis, MN 55414", 0.2, 4.0, R.drawable.resimg_haiku,
                 type.CASUAL, type.SIT_DOWN, type.JAPANESE, type.SUSHI));
         restaurantArrayList.add(new Restaurant("Chick-Fil-A",
-                "300 SE Washington Ave, Minneapolis, MN 55455", 0.2, 4.4,
+                "300 SE Washington Ave, Minneapolis, MN 55455", 0.2, 4.4, R.drawable.resimg_chickfila,
                 type.FAST_FOOD, type.CHICKEN));
-
     }
 
     public void filter(double distance, double rating, type ... cuisine) {
@@ -91,29 +90,4 @@ public class Restaurants {
         return selectedRestaurants;
     }
 
-    private class Restaurant {
-        private String name;
-        private String address;
-        private double distance;
-        private double rating;
-        private type[] cuisine;
-
-        public Restaurant(String name, String address, double distance, double rating, type ... cuisine) {
-            this.name = name;
-            this.address = address;
-            this.distance = distance;
-            this.rating = rating;
-            this.cuisine = cuisine;
-        }
-
-        public String getName() { return name; }
-
-        public String getAddress() { return address; }
-
-        public double getDistance() { return distance; }
-
-        public double getRating() { return rating; }
-
-        public type[] getCuisine() { return cuisine; }
-    }
 }
