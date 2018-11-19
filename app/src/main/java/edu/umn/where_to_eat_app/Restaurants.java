@@ -9,6 +9,8 @@ public class Restaurants {
     private static ArrayList<Restaurant> filteredRestaurants = new ArrayList<>();
     private static ArrayList<Restaurant> selectedRestaurants = new ArrayList<>();
 
+    private static String openedRestaurant = null;
+
     public enum type {
         FAST_FOOD, SIT_DOWN, CASUAL, BAR,
         JAPANESE, KOREAN, CHINESE, HISPANIC, ITALIAN, AMERICAN,
@@ -90,4 +92,8 @@ public class Restaurants {
         return selectedRestaurants;
     }
 
+
+
+    public static String getOpenedRestaurant() { return openedRestaurant; }
+    public static void setOpenedRestaurant(String s) { openedRestaurant = s; }
 }

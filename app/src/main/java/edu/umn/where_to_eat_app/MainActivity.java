@@ -120,8 +120,14 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (getSupportFragmentManager().getFragments().size() != 0){
+            for (Fragment f : getSupportFragmentManager().getFragments()) {
+                if (f!=null) {
+                    getSupportFragmentManager().beginTransaction().remove(f).commit();
+                }
+            }
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
         }
     }
 
