@@ -18,6 +18,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -86,7 +88,10 @@ public class MainActivity extends AppCompatActivity
         Button joinRoomButton = findViewById(R.id.joinRoomButton);
 
         createRoomButton.setOnClickListener((e) -> {
-            // TODO: Go to create room fragment
+            android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.content_frame, new InformationPage());
+            fragmentTransaction.commit();
         });
 
         joinRoomButton.setOnClickListener((e) -> {
@@ -94,6 +99,8 @@ public class MainActivity extends AppCompatActivity
         });
 
         // Burger
+
+        createProductsList();
     }
 
     @Override
@@ -182,4 +189,41 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    private ArrayList<Product> productList;
+
+    public void createProductsList() {
+        //initializing the productlist
+        this.productList = new ArrayList<Product>();
+
+
+        //adding some items to our list
+        this.productList.add(
+                new Product(
+                        1,
+                        "Apple MacBook Air Core i5 5th Gen - (8 GB/128 GB SSD/Mac OS Sierra)",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                        4.3,
+                        600,
+                        R.drawable.burger));
+
+        this.productList.add(
+                new Product(
+                        1,
+                        "Dell Inspiron",
+                        "14 inch, Gray, 1.659 kg",
+                        4.3,
+                        600,
+                        R.drawable.burger));
+
+        this.productList.add(
+                new Product(
+                        1,
+                        "Microsoft Surface Pro 4 Core m3 6th Gen - (4 GB/128 GB SSD/Windows 10)",
+                        "13.3 inch, Silver, 1.35 kg",
+                        4.3,
+                        600,
+                        R.drawable.burger));
+    }
+
+    public ArrayList<Product> getProductList() {return this.productList;}
 }

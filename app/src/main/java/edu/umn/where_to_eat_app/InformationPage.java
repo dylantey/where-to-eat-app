@@ -1,8 +1,11 @@
 package edu.umn.where_to_eat_app;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -108,11 +111,42 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InformationPage extends Fragment{
+
+    //a list to store all the products
+    List<Product> productList;
+
+    //the recyclerview
+    RecyclerView recyclerView;
+
+    ViewGroup container;
+
+    Context context;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        this.container = container;
+        this.context = container.getContext();
+
+        getActivity().setContentView(R.layout.information_page);
+
+        //getting the recyclerview from xml
+        recyclerView = (RecyclerView) getActivity().findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.context));
+
+        MainActivity main = (MainActivity) getActivity();
+        productList = main.getProductList();
+
+        //creating recyclerview adapter
+        ProductAdapter adapter = new ProductAdapter(this.context, this.container, productList);
+
+        //setting adapter to recyclerview
+        recyclerView.setAdapter(adapter);
         //returning our layout file
         //change R.layout.yourlayoutfilename for each of your fragments
         return inflater.inflate(R.layout.information_page, container, false);
