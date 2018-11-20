@@ -46,10 +46,10 @@ public class JoinARoom extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         Fragment fragment = null;
         switch (view.getId()) {
-            case R.id.Submit:
-                fragment = new Lobby();
-                replaceFragment(fragment);
-                break;
+            //case R.id.Submit:
+                //fragment = new Lobby();
+                //replaceFragment(fragment);
+                //break;
         }
     }
 

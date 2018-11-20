@@ -35,12 +35,12 @@ public class VotingResults extends AppCompatActivity{
 
         map1Button.setOnClickListener((e) -> {
             // TODO: Go to join a friends room fragment
-            startActivity(new Intent(VotingResults.this,MainActivity.class));
+            startActivity(new Intent(VotingResults.this,Map.class));
         });
 
         map2Button.setOnClickListener((e) -> {
             // TODO: Go to join a friends room fragment
-            startActivity(new Intent(VotingResults.this,MainActivity.class));
+            startActivity(new Intent(VotingResults.this,Map.class));
         });
 
         homeButton.setOnClickListener((e) -> {

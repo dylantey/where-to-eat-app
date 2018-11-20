@@ -14,6 +14,7 @@ public class JoinARoomLoggedIn extends AppCompatActivity{
 
         Button joinAFriendsRoomButton = findViewById(R.id.JoinFriendsRoom);
         Button submitButton = findViewById(R.id.Submit);
+        Button homeButton = findViewById(R.id.Home);
 
         joinAFriendsRoomButton.setOnClickListener((e) -> {
             // TODO: Go to join a friends room fragment
@@ -23,6 +24,11 @@ public class JoinARoomLoggedIn extends AppCompatActivity{
         submitButton.setOnClickListener((e) -> {
             // TODO: Go to voting results fragment
             startActivity(new Intent(JoinARoomLoggedIn.this,Lobby.class));
+        });
+
+        homeButton.setOnClickListener((e) -> {
+            // TODO: Go to voting results fragment
+            startActivity(new Intent(JoinARoomLoggedIn.this,MainActivity.class));
         });
     }
 
