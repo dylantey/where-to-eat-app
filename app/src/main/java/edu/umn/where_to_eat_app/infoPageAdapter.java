@@ -52,6 +52,9 @@ public class infoPageAdapter extends RecyclerView.Adapter<infoPageHolder>{
         ((LinearLayout) holder.container).removeAllViews();
 
         holder.component = ComponentFactory.makeRestaurantBox(r, (Activity) context);
+        if(holder.selected) {
+            holder.component.setBackgroundColor(Color.rgb(0, 204, 0));
+        }
         holder.component.setOnClickListener((e) -> {
             if(holder.selected) {
                 holder.component.setBackgroundColor(Color.rgb(250, 250, 250));

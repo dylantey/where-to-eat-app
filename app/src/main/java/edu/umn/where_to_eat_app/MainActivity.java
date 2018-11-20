@@ -1,5 +1,6 @@
 package edu.umn.where_to_eat_app;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -228,5 +229,11 @@ public class MainActivity extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction().detach(f).attach(f).commit();
             }
         }
+    }
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        //No call for super(). Bug on API Level > 11.
     }
 }
