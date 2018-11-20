@@ -1,9 +1,6 @@
 package edu.umn.where_to_eat_app;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 
 public class MenuHandler {
@@ -19,6 +16,8 @@ public class MenuHandler {
             fragment = new ProfilePage();
         } else if (id == R.id.friendsprofile) {
             fragment = new friends();
+        } else if (id == R.id.explore) {
+            fragment = new Explore();
         }
 
         return fragment;

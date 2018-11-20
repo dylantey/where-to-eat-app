@@ -18,7 +18,6 @@ public class ComponentFactory {
         // Create LinearLayout
         LinearLayout ll = new LinearLayout(activity.getApplicationContext());
         ll.setOrientation(LinearLayout.HORIZONTAL);
-        ll.setBackgroundColor(Color.LTGRAY);
         ll.setPadding(10, 10, 10, 10);
 
         // image
@@ -40,6 +39,9 @@ public class ComponentFactory {
         nm.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200));
         nm.setText(restaurant.getName());
         nm.setGravity(Gravity.CENTER_VERTICAL);
+        if(Users.getCurrentUserObject().getFavoriteRestaurants().contains(restaurant)) {
+            nm.setText("★ " + nm.getText());
+        }
 
         // subtext
         LinearLayout iill = new LinearLayout(activity.getApplicationContext());
@@ -52,6 +54,19 @@ public class ComponentFactory {
         rating.setTextColor(activity.getResources().getColor(R.color.white));
         rating.setBackgroundColor(activity.getResources().getColor(R.color.darkRed));
         rating.setPadding(5, 2, 5, 2);
+
+        // dollars
+        TextView dollars = new TextView(activity.getApplicationContext());
+        String dollarString = "";
+        for(int i = 0; i < restaurant.getDollars(); i++) {
+            dollarString += "$";
+        }
+        dollars.setText(dollarString);
+        dollars.setTextColor(activity.getResources().getColor(R.color.white));
+        dollars.setBackgroundColor(activity.getResources().getColor(R.color.colorAccent));
+        dollars.setPadding(5, 2, 5, 2);
+        dollars.setLayoutParams(new LinearLayout.LayoutParams(150, ViewGroup.LayoutParams.WRAP_CONTENT));
+        dollars.setGravity(Gravity.CENTER);
 
         // cuisine
 
@@ -66,7 +81,7 @@ public class ComponentFactory {
         boolean first = true;
         for(Restaurants.type t : restaurant.getCuisine()) {
             TextView cuisine = new TextView(activity.getApplicationContext());
-            cuisine.setText(t.toString());
+            cuisine.setText(t.toString().replace('_', ' '));
             cuisine.setBackgroundColor(Color.DKGRAY);
             cuisine.setTextColor(activity.getResources().getColor(R.color.white));
             cuisine.setPadding(5, 2, 5, 2);
@@ -84,6 +99,7 @@ public class ComponentFactory {
 
         cuisineScroll.addView(iiill);
         iill.addView(rating);
+        iill.addView(dollars);
         iill.addView(spaceIH);
         iill.addView(cuisineScroll);
         ill.addView(nm);
