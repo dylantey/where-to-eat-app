@@ -1,29 +1,24 @@
 package edu.umn.where_to_eat_app;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class infoPageHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-    ImageView img;
-    TextView name, distance, rating, cuisine;
-    CheckBox chk;
+    View container;
+    LinearLayout component;
 
     ItemClickListener itemClickListener;
+    boolean selected = false;
 
     public infoPageHolder(View itemView) {
         super(itemView);
+        container = itemView.findViewById(R.id.cardContainer);
 
-        name = (TextView) itemView.findViewById(R.id.textViewName);
-        distance = (TextView) itemView.findViewById(R.id.textViewDistance);
-        rating = (TextView) itemView.findViewById(R.id.textViewRating);
-        //cuisine = (TextView) itemView.findViewById(R.id.textViewPrice);
-        img = (ImageView) itemView.findViewById(R.id.imageView);
-        chk = (CheckBox) itemView.findViewById(R.id.chk);
-
-        chk.setOnClickListener(this);
     }
 
     public void setItemClickListener(ItemClickListener ic){

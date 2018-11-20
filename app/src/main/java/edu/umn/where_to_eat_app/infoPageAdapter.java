@@ -1,12 +1,17 @@
 package edu.umn.where_to_eat_app;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
@@ -40,26 +45,29 @@ public class infoPageAdapter extends RecyclerView.Adapter<infoPageHolder>{
 
         //binds a restaurant to a view?
         Restaurant r = restaurants.get(position);
-        String name = new String(r.getName());
-        System.out.println(name);
-        holder.name.setText(name);
-        holder.distance.setText(String.valueOf(r.getDistance()));
-        holder.rating.setText(String.valueOf(r.getRating()));
-        //holder.cuisine.setText("idk");//how to get string of cuisines???????????????????????????
-        holder.img.setImageResource(r.getImgSrc());
 
-        holder.setItemClickListener((view, position1) -> {
-            CheckBox chk = (CheckBox) view;
 
-            //checked or not
-            if (chk.isChecked()) {
-                checkedRestaurants.add(restaurants.get(position1));
+
+
+        ((LinearLayout) holder.container).removeAllViews();
+
+        holder.component = ComponentFactory.makeRestaurantBox(r, (Activity) context);
+        holder.component.setOnClickListener((e) -> {
+            if(holder.selected) {
+                holder.component.setBackgroundColor(Color.rgb(250, 250, 250));
+                checkedRestaurants.remove(restaurants.get(position));
+                holder.selected = false;
+
             } else {
-                if (!chk.isChecked()) {
-                    checkedRestaurants.remove(restaurants.get(position1));
-                }
+                holder.component.setBackgroundColor(Color.rgb(0, 204, 0));
+                checkedRestaurants.add(restaurants.get(position));
+                holder.selected = true;
             }
+
+
         });
+
+        ((LinearLayout) holder.container).addView(holder.component);
     }
 
     @Override
