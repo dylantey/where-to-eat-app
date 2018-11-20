@@ -66,7 +66,7 @@ public class Restaurants {
         Collections.sort(restaurantArrayList);
     }
 
-    public void filter(double distance, double rating, type ... cuisine) {
+    public static void filter(double distance, double rating, int money, type ... cuisine) {
 
         if(distance == -1.0) {
             distance = Double.MAX_VALUE;
@@ -76,12 +76,16 @@ public class Restaurants {
             rating = 5.0;
         }
 
+        if(money == -1.0) {
+            money = 4;
+        }
+
         // clear filtered list
         filteredRestaurants = new ArrayList<>();
 
 
         for(Restaurant r : restaurantArrayList) {
-            if(r.getDistance() <= distance && r.getRating() >= rating) {
+            if(r.getDistance() <= distance && r.getRating() >= rating && r.getDollars() <= money) {
                 if(Arrays.asList(r.getCuisine()).containsAll(Arrays.asList(cuisine))) {
                     filteredRestaurants.add(r);
                 }
@@ -89,7 +93,7 @@ public class Restaurants {
         }
     }
     //puts restaurant in the selected list by name
-    public void selectRestaurant(String name) {
+    public static void selectRestaurant(String name) {
         for(Restaurant r : restaurantArrayList) {
             if(r.getName().equals(name)) {
                 selectedRestaurants.add(r);
@@ -97,7 +101,7 @@ public class Restaurants {
         }
     }
     //removes restaurant from the selected list by name
-    public void removeRestaurant(String name) {
+    public static void removeRestaurant(String name) {
         Restaurant remove = null;
         for(Restaurant r : selectedRestaurants) {
             if(r.getName().equals(name)) {
@@ -133,27 +137,27 @@ public class Restaurants {
 
 
     //gets restaurant by position
-    public  Restaurant restaurantGet(int position){
+    public static Restaurant restaurantGet(int position){
         return restaurantArrayList.get(position);
     }
     //gets selected by position
-    public  Restaurant selectedGet(int position){
+    public static Restaurant selectedGet(int position){
         return selectedRestaurants.get(position);
     }
     //add by position
-    public  void selectedAdd(Restaurant r){
+    public static void selectedAdd(Restaurant r){
         selectedRestaurants.add(r);
     }
     //removes by position
-    public  void selectedRemove(Restaurant r){
+    public static void selectedRemove(Restaurant r){
         selectedRestaurants.remove(r);
     }
     //returns size of restaurantArrayList
-    public  int restaurantSize(){
+    public static int restaurantSize(){
         return restaurantArrayList.size();
     }
     //returns size of selectedRestaurants
-    public  int selectedSize(){
+    public static int selectedSize(){
         return selectedRestaurants.size();
     }
     public static String getOpenedRestaurant() { return openedRestaurant; }

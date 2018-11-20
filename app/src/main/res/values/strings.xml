@@ -17,4 +17,26 @@
     <string name="maybe">Maybe</string>
     <string name="yes">Yes</string>
     <string name="hello_blank_fragment">Hello</string>
+
+    <!--         FAST_FOOD, SIT_DOWN, CASUAL, BAR,
+        JAPANESE, KOREAN, CHINESE, MEXICAN, ITALIAN, AMERICAN,
+        CHICKEN, PIZZA, BURGERS, TACOS, SUSHI -->
+    <string-array name="cuisines">
+        <item>---</item>
+        <item>Fast Food</item>
+        <item>Sit Down</item>
+        <item>Casual</item>
+        <item>Bar</item>
+        <item>Japanese</item>
+        <item>Korean</item>
+        <item>Chinese</item>
+        <item>Mexican</item>
+        <item>Italian</item>
+        <item>American</item>
+        <item>Chicken</item>
+        <item>Pizza</item>
+        <item>Burgers</item>
+        <item>Tacos</item>
+        <item>Sushi</item>
+    </string-array>
 </resources>
