@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity
 
         createRoomButton.setOnClickListener((e) -> {
             // TODO: Go to create room fragment
-            startActivity(new Intent(MainActivity.this,VotingResults.class));
+            startActivity(new Intent(MainActivity.this,RestaurantFiltering.class));
         });
 
         joinRoomButton.setOnClickListener((e) -> {

@@ -25,7 +25,7 @@ public class InformationPage extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_info_page);
         //setSupportActionBar(toolbar);
 
-        this.adapter = new infoPageAdapter(this, restaurants.getRestaurantArrayList());
+        this.adapter = new infoPageAdapter(this, Restaurants.getFilteredRestaurants());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_info_page);
         fab.setOnClickListener(new View.OnClickListener() {
