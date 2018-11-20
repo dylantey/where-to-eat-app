@@ -35,6 +35,21 @@
             android:label="where-to-eat-app"
             android:theme="@style/AppTheme">
         </activity>
+        <activity
+            android:name=".JoinARoomLoggedIn"
+            android:label="where-to-eat-app"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".VotingResults"
+            android:label="where-to-eat-app"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".JoinAFriendsRoom"
+            android:label="where-to-eat-app"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>

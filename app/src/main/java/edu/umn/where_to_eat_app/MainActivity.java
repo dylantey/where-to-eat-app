@@ -87,10 +87,12 @@ public class MainActivity extends AppCompatActivity
 
         createRoomButton.setOnClickListener((e) -> {
             // TODO: Go to create room fragment
+            startActivity(new Intent(MainActivity.this,VotingResults.class));
         });
 
         joinRoomButton.setOnClickListener((e) -> {
             // TODO: Go to join room fragment
+            startActivity(new Intent(MainActivity.this,JoinARoomLoggedIn.class));
         });
 
         // Burger
