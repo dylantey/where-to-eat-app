@@ -1,20 +1,15 @@
 package edu.umn.where_to_eat_app;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Space;
 import android.widget.TextView;
 
@@ -35,16 +30,29 @@ public class ProfilePage extends Fragment{
         TextView name = getView().findViewById(R.id.profileName);
         name.setText(Users.getCurrentName());
 
+        ImageView profilePic = getView().findViewById(R.id.profilePicture);
+        profilePic.setImageResource(Users.getCurrentUserObject().getImageSrc());
+
         // Populate restaurant list
-        for(Restaurant r : Restaurants.getRestaurantArrayList()) {
-            LinearLayout ll = ComponentFactory.makeRestaurantBox(r, getActivity());
+        if(Users.getCurrentUserObject().getFavoriteRestaurants().size() == 0) {
+            TextView sad = new TextView(getContext());
+            sad.setText("\n\n\n\nFavorites list is empty.");
+            sad.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT));
+            sad.setGravity(Gravity.CENTER);
+            sad.setTextSize(26);
+            ((LinearLayout) getView().findViewById(R.id.favoritesContainer)).addView(sad);
+        } else {
+            for (Restaurant r : Users.getCurrentUserObject().getFavoriteRestaurants()) {
+                System.out.println(r.getName());
+                LinearLayout ll = ComponentFactory.makeRestaurantBox(r, getActivity());
 
-            Space space = new Space(getContext());
-            space.setLayoutParams(new LinearLayout.LayoutParams(0, 50));
+                Space space = new Space(getContext());
+                space.setLayoutParams(new LinearLayout.LayoutParams(0, 50));
 
-            ((LinearLayout) getView().findViewById(R.id.favoritesContainer)).addView(ll);
-            ((LinearLayout) getView().findViewById(R.id.favoritesContainer)).addView(space);
-
+                ((LinearLayout) getView().findViewById(R.id.favoritesContainer)).addView(ll);
+                ((LinearLayout) getView().findViewById(R.id.favoritesContainer)).addView(space);
+            }
         }
     }
 
