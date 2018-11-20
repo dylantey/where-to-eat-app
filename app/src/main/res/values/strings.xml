@@ -12,4 +12,9 @@
     <string name="register_text">Register</string>
     <string name="login_title">Where to Eat!</string>
 
+    <!--Voting radio Buttons-->
+    <string name="no_way">No Way</string>
+    <string name="maybe">Maybe</string>
+    <string name="yes">Yes</string>
+
 </resources>

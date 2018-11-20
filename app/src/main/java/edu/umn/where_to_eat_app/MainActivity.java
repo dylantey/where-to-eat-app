@@ -16,7 +16,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -43,6 +46,12 @@ public class MainActivity extends AppCompatActivity
             Users.setCurrentUser(user);
             TextView welcome = findViewById(R.id.welcomeText);
             welcome.setText("Welcome, " + Users.getCurrentName() + "!");
+
+            // Set user picture
+            ImageView profilePic = findViewById(R.id.profilePicture);
+            profilePic.setImageResource(Users.getCurrentUserObject().getImageSrc());
+
+
         } else {
             startActivityForResult(new Intent(MainActivity.this, Login.class), 1);
         }
@@ -56,6 +65,9 @@ public class MainActivity extends AppCompatActivity
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             public void onDrawerOpened(View drawerView) {
 
+                ImageView profilePic = findViewById(R.id.profilePictureSmall);
+                profilePic.setImageResource(Users.getCurrentUserObject().getImageSrc());
+
                 TextView name = findViewById(R.id.navName);
                 name.setText(Users.getCurrentName());
                 TextView userName = findViewById(R.id.navUser);
@@ -63,15 +75,19 @@ public class MainActivity extends AppCompatActivity
 
                 super.onDrawerOpened(drawerView);
 
-                name.animate().alpha(1).setDuration(250);
-                userName.animate().alpha(1).setDuration(250);
+                name.animate().alpha(1).setDuration(500);
+                userName.animate().alpha(1).setDuration(500);
+                profilePic.animate().alpha(1).setDuration(500);
+
             }
 
             public void onDrawerClosed(View drawerView) {
                 TextView name = findViewById(R.id.navName);
                 TextView userName = findViewById(R.id.navUser);
+                ImageView profilePic = findViewById(R.id.profilePictureSmall);
                 name.setAlpha(0f);
                 userName.setAlpha(0f);
+                profilePic.setAlpha(0f);
                 super.onDrawerClosed(drawerView);
             }
         };
@@ -93,9 +109,12 @@ public class MainActivity extends AppCompatActivity
         joinRoomButton.setOnClickListener((e) -> {
             // TODO: Go to join room fragment
             startActivity(new Intent(MainActivity.this,JoinARoomLoggedIn.class));
+            //TODO: hook up createRoomButton
         });
 
         // Burger
+
+
     }
 
     @Override
@@ -105,6 +124,10 @@ public class MainActivity extends AppCompatActivity
                 // Set welcome text
                 TextView welcome = findViewById(R.id.welcomeText);
                 welcome.setText("Welcome, " + Users.getCurrentName() + "!");
+
+                // Set user picture
+                ImageView profilePic = findViewById(R.id.profilePicture);
+                profilePic.setImageResource(Users.getCurrentUserObject().getImageSrc());
 
                 // Set prefs to user
                 SharedPreferences.Editor edit = prefs.edit();
@@ -119,8 +142,14 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (getSupportFragmentManager().getFragments().size() != 0){
+            for (Fragment f : getSupportFragmentManager().getFragments()) {
+                if (f!=null) {
+                    getSupportFragmentManager().beginTransaction().remove(f).commit();
+                }
+            }
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
         }
     }
 
@@ -183,5 +212,16 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        for (Fragment f : getSupportFragmentManager().getFragments()) {
+            if(f!=null) {
+                getSupportFragmentManager().beginTransaction().detach(f).attach(f).commit();
+            }
+        }
     }
 }

@@ -1,0 +1,85 @@
+package edu.umn.where_to_eat_app;
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Space;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+public class RestaurantActivity extends AppCompatActivity {
+
+    private Restaurant restaurant = null;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.restaurant_activity);
+
+        setTitle("Restaurant Info");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            int idx = extras.getInt("Index");
+            restaurant = Restaurants.getRestaurantArrayList().get(idx);
+        }
+
+        // Populate info
+        ((ImageView) findViewById(R.id.restaurantImage)).setImageResource(restaurant.getImgSrc());
+        ((TextView) findViewById(R.id.restaurantName)).setText(restaurant.getName());
+        ((TextView) findViewById(R.id.restaurantRating)).setText(Double.toString(restaurant.getRating()) + "★");
+        ((TextView) findViewById(R.id.restaurantAddress)).setText(restaurant.getAddress());
+
+        boolean first = true;
+        LinearLayout hScroll = findViewById(R.id.restaurantCuisine);
+        for(Restaurants.type t : restaurant.getCuisine()) {
+            TextView cuisine = new TextView(getApplicationContext());
+            cuisine.setText(t.toString().replace('_', ' '));
+            cuisine.setBackgroundColor(Color.DKGRAY);
+            cuisine.setTextColor(getResources().getColor(R.color.white));
+            cuisine.setPadding(5, 2, 5, 2);
+
+            Space space = new Space(getApplicationContext());
+            space.setLayoutParams(new LinearLayout.LayoutParams(50, 0));
+
+            if(first) {
+                first = false;
+            } else {
+                hScroll.addView(space);
+            }
+            hScroll.addView(cuisine);
+        }
+
+        Button favoriteButton = findViewById(R.id.favoriteButton);
+        if(Users.getCurrentUserObject().getFavoriteRestaurants().contains(restaurant)) {
+            favoriteButton.setBackgroundColor(Color.GRAY);
+            favoriteButton.setText("Remove from favorites");
+        }
+
+        favoriteButton.setOnClickListener((e) -> {
+            if(Users.getCurrentUserObject().getFavoriteRestaurants().contains(restaurant)) {
+                Users.getCurrentUserObject().removeFavoriteRestaurant(restaurant.getName());
+                favoriteButton.setBackgroundColor(getResources().getColor(R.color.darkRed));
+                favoriteButton.setText("Add to favorites");
+            } else {
+                Users.getCurrentUserObject().addFavoriteRestaurant(restaurant.getName());
+                favoriteButton.setBackgroundColor(Color.GRAY);
+                favoriteButton.setText("Remove from favorites");
+            }
+        });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
+
+}

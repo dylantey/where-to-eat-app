@@ -50,6 +50,11 @@
             android:label="where-to-eat-app"
             android:theme="@style/AppTheme">
         </activity>
+		<activity>
+            android:name=".RestaurantActivity"
+            android:label="where-to-eat-app"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>
