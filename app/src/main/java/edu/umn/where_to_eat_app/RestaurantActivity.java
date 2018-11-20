@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
+import android.net.Uri;
 
 import org.w3c.dom.Text;
 
@@ -72,6 +73,19 @@ public class RestaurantActivity extends AppCompatActivity {
                 Users.getCurrentUserObject().addFavoriteRestaurant(restaurant.getName());
                 favoriteButton.setBackgroundColor(Color.GRAY);
                 favoriteButton.setText("Remove from favorites");
+            }
+        });
+
+        Button mapButton = findViewById(R.id.mapButton);
+        mapButton.setOnClickListener((e) -> {
+            // Setting a google maps query suing the restaurant's address
+            Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + restaurant.getName() +
+                    " " + restaurant.getAddress());
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                // Opening google maps externally pointing to the Google Maps App
+                startActivity(mapIntent);
             }
         });
     }
