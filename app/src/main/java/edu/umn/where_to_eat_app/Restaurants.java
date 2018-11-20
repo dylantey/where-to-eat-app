@@ -19,6 +19,9 @@ public class Restaurants {
     }
 
     public Restaurants() {
+        //reset list so no duplicates
+        restaurantArrayList = new ArrayList<>();
+
         restaurantArrayList.add(new Restaurant("Applebee's",
                 "615 Washington Ave SE, Minneapolis, MN 55414",
                 0.2, 2.8, 2, R.drawable.resimg_applebees,
@@ -85,7 +88,7 @@ public class Restaurants {
             }
         }
     }
-
+    //puts restaurant in the selected list by name
     public void selectRestaurant(String name) {
         for(Restaurant r : restaurantArrayList) {
             if(r.getName().equals(name)) {
@@ -93,7 +96,7 @@ public class Restaurants {
             }
         }
     }
-
+    //removes restaurant from the selected list by name
     public void removeRestaurant(String name) {
         Restaurant remove = null;
         for(Restaurant r : selectedRestaurants) {
@@ -106,7 +109,7 @@ public class Restaurants {
             selectedRestaurants.remove(remove);
         }
     }
-
+    //returns restaurant by name
     public static Restaurant getRestaurantObject(String name) {
         for(Restaurant r : restaurantArrayList) {
             if(r.getName().equals(name)) {
@@ -130,27 +133,27 @@ public class Restaurants {
 
 
     //gets restaurant by position
-    public static Restaurant restaurantGet(int position){
+    public  Restaurant restaurantGet(int position){
         return restaurantArrayList.get(position);
     }
     //gets selected by position
-    public static Restaurant selectedGet(int position){
+    public  Restaurant selectedGet(int position){
         return selectedRestaurants.get(position);
     }
     //add by position
-    public static void selectedAdd(Restaurant r){
+    public  void selectedAdd(Restaurant r){
         selectedRestaurants.add(r);
     }
     //removes by position
-    public static void selectedRemove(Restaurant r){
+    public  void selectedRemove(Restaurant r){
         selectedRestaurants.remove(r);
     }
     //returns size of restaurantArrayList
-    public static int restaurantSize(){
+    public  int restaurantSize(){
         return restaurantArrayList.size();
     }
     //returns size of selectedRestaurants
-    public static int selectedSize(){
+    public  int selectedSize(){
         return selectedRestaurants.size();
     }
     public static String getOpenedRestaurant() { return openedRestaurant; }

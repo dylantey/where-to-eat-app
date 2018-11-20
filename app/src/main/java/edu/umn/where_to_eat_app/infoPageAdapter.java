@@ -15,11 +15,14 @@ public class infoPageAdapter extends RecyclerView.Adapter<infoPageHolder>{
     //MyHolder holder;
 
     Context context;
-    //ArrayList<Restaurant> restaurants;
-    //ArrayList<Restaurant> checkedRestaurants = Restaurants.getSelectedRestaurants();
+    ArrayList<Restaurant> restaurants;
+    ArrayList<Restaurant> checkedRestaurants;
+    //Restaurants restaurants = new Restaurants();
 
-    public infoPageAdapter(Context c) {
+    public infoPageAdapter(Context c, ArrayList<Restaurant> restaurants) {
         this.context = c;
+        this.restaurants = restaurants;
+        this.checkedRestaurants = new ArrayList<>();
     }
 
     //VIEWHOLDER is intitialized
@@ -34,23 +37,26 @@ public class infoPageAdapter extends RecyclerView.Adapter<infoPageHolder>{
     //DATA is bound to views
     @Override
     public void onBindViewHolder(@NonNull infoPageHolder holder, int position) {
-        holder.name.setText(Restaurants.restaurantGet(position).getName());
-        holder.distance.setText(Restaurants.restaurantGet(position).getName());
-        holder.rating.setText(String.valueOf(Restaurants.restaurantGet(position).getRating()));
-        holder.cuisine.setText("idk");//how to get string of cuisines???????????????????????????
-        holder.img.setImageResource(Restaurants.restaurantGet(position).getImgSrc());
 
-        holder.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                CheckBox chk = (CheckBox) view;
+        //binds a restaurant to a view?
+        Restaurant r = restaurants.get(position);
+        String name = new String(r.getName());
+        System.out.println(name);
+        holder.name.setText(name);
+        holder.distance.setText(String.valueOf(r.getDistance()));
+        holder.rating.setText(String.valueOf(r.getRating()));
+        //holder.cuisine.setText("idk");//how to get string of cuisines???????????????????????????
+        holder.img.setImageResource(r.getImgSrc());
 
-                //checked or not
-                if(chk.isChecked()){
-                    Restaurants.selectedAdd(Restaurants.restaurantGet(position));
-                }else { if(!chk.isChecked()) {
-                    Restaurants.selectedRemove(Restaurants.restaurantGet(position));
-                }
+        holder.setItemClickListener((view, position1) -> {
+            CheckBox chk = (CheckBox) view;
+
+            //checked or not
+            if (chk.isChecked()) {
+                checkedRestaurants.add(restaurants.get(position1));
+            } else {
+                if (!chk.isChecked()) {
+                    checkedRestaurants.remove(restaurants.get(position1));
                 }
             }
         });
@@ -58,7 +64,17 @@ public class infoPageAdapter extends RecyclerView.Adapter<infoPageHolder>{
 
     @Override
     public int getItemCount() {
-        return Restaurants.restaurantSize();
+        return restaurants.size();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 }
 

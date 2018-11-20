@@ -16,10 +16,10 @@ public class infoPageHolder extends RecyclerView.ViewHolder implements View.OnCl
     public infoPageHolder(View itemView) {
         super(itemView);
 
-        name = (TextView) itemView.findViewById(R.id.textViewTitle);
-        distance = (TextView) itemView.findViewById(R.id.textViewShortDesc);
+        name = (TextView) itemView.findViewById(R.id.textViewName);
+        distance = (TextView) itemView.findViewById(R.id.textViewDistance);
         rating = (TextView) itemView.findViewById(R.id.textViewRating);
-        cuisine = (TextView) itemView.findViewById(R.id.textViewPrice);
+        //cuisine = (TextView) itemView.findViewById(R.id.textViewPrice);
         img = (ImageView) itemView.findViewById(R.id.imageView);
         chk = (CheckBox) itemView.findViewById(R.id.chk);
 

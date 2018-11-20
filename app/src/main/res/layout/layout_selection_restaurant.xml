@@ -59,7 +59,7 @@
                     android:text="4.7"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small.Inverse"
                     android:textStyle="bold" />
-
+<!--
                 <TextView
                     android:id="@+id/textViewCuisine"
                     android:layout_width="wrap_content"
@@ -71,7 +71,7 @@
                     android:text="American"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                     android:textStyle="bold" />
-
+-->
                 <CheckBox
                     android:id="@+id/chk"
                     android:layout_width="wrap_content"
