@@ -112,13 +112,11 @@ public class MainActivity extends AppCompatActivity
             Intent infoPageIntent = new Intent(this, newInformationPage.class);
             startActivity(infoPageIntent);
         });
-<<<<<<< HEAD
 
         // Burger
 
         createProductsList();
-=======
->>>>>>> 5131a329ea6e5752e825e566de77bb665d25df70
+
     }
 
     @Override
