@@ -98,7 +98,8 @@ public class MainActivity extends AppCompatActivity
         });
 
         joinRoomButton.setOnClickListener((e) -> {
-            // TODO: Go to join room fragment
+            Intent infoPageIntent = new Intent(this, newInformationPage.class);
+            startActivity(infoPageIntent);
         });
 
         // Burger

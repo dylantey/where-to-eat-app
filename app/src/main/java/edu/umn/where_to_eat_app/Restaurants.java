@@ -93,7 +93,30 @@ public class Restaurants {
     }
 
 
-
+    //gets restaurant by position
+    public static Restaurant restaurantGet(int position){
+        return restaurantArrayList.get(position);
+    }
+    //gets selected by position
+    public static Restaurant selectedGet(int position){
+        return selectedRestaurants.get(position);
+    }
+    //add by position
+    public static void selectedAdd(Restaurant r){
+        selectedRestaurants.add(r);
+    }
+    //removes by position
+    public static void selectedRemove(Restaurant r){
+        selectedRestaurants.remove(r);
+    }
+    //returns size of restaurantArrayList
+    public static int restaurantSize(){
+        return restaurantArrayList.size();
+    }
+    //returns size of selectedRestaurants
+    public static int selectedSize(){
+        return selectedRestaurants.size();
+    }
     public static String getOpenedRestaurant() { return openedRestaurant; }
     public static void setOpenedRestaurant(String s) { openedRestaurant = s; }
 }
