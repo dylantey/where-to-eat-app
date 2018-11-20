@@ -16,16 +16,15 @@ public class InformationPage extends AppCompatActivity {
 
     StringBuffer sb = null;
     infoPageAdapter adapter;
-    Restaurants restaurants = new Restaurants();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.information_page);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_info_page);
-        //setSupportActionBar(toolbar);
-
         this.adapter = new infoPageAdapter(this, Restaurants.getFilteredRestaurants());
+
+
+        setTitle("Select Restaurants to Add to Pool");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_info_page);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -35,7 +34,7 @@ public class InformationPage extends AppCompatActivity {
                 sb = new StringBuffer();
 
                 for(Restaurant r : adapter.checkedRestaurants){
-                    restaurants.selectRestaurant(r.getName());
+                    Restaurants.selectRestaurant(r.getName());
                     sb.append(r.getName());
                     sb.append("\n");
                 }
@@ -63,7 +62,7 @@ public class InformationPage extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu); //maybe R.menu.main is wrong
-        return true;
+        return false;
     }
 
     @Override

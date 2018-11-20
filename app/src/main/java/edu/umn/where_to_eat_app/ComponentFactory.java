@@ -23,7 +23,7 @@ public class ComponentFactory {
         // image
         ImageView image = new ImageView(activity.getApplicationContext());
         image.setImageResource(restaurant.getImgSrc());
-        image.setLayoutParams(new LinearLayout.LayoutParams(300,300));
+        image.setLayoutParams(new LinearLayout.LayoutParams(300,350));
 
         Space spaceH = new Space(activity.getApplicationContext());
         spaceH.setLayoutParams(new LinearLayout.LayoutParams(50, 0));
@@ -31,7 +31,7 @@ public class ComponentFactory {
         // inner layout
         LinearLayout ill = new LinearLayout(activity.getApplicationContext());
         ill.setOrientation(LinearLayout.VERTICAL);
-        ill.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300));
+        ill.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 350));
 
         // text
         TextView nm = new TextView(activity.getApplicationContext());
@@ -42,6 +42,16 @@ public class ComponentFactory {
         if(Users.getCurrentUserObject().getFavoriteRestaurants().contains(restaurant)) {
             nm.setText("★ " + nm.getText());
         }
+
+        // distance
+        TextView distance = new TextView(activity.getApplicationContext());
+        distance.setText(String.valueOf(restaurant.getDistance()) + " mi.");
+        distance.setTextColor(activity.getResources().getColor(R.color.white));
+        distance.setBackgroundColor(activity.getResources().getColor(R.color.lightBlue));
+        distance.setPadding(5, 2, 5, 2);
+        distance.setLayoutParams(new LinearLayout.LayoutParams(200, ViewGroup.LayoutParams.WRAP_CONTENT));
+        distance.setGravity(Gravity.CENTER);
+
 
         // subtext
         LinearLayout iill = new LinearLayout(activity.getApplicationContext());
@@ -103,6 +113,7 @@ public class ComponentFactory {
         iill.addView(spaceIH);
         iill.addView(cuisineScroll);
         ill.addView(nm);
+        ill.addView(distance);
         ill.addView(iill);
         ll.addView(image);
         ll.addView(spaceH);

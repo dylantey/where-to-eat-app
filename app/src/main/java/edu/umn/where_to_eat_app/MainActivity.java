@@ -1,5 +1,6 @@
 package edu.umn.where_to_eat_app;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -102,14 +103,17 @@ public class MainActivity extends AppCompatActivity
         Button joinRoomButton = findViewById(R.id.joinRoomButton);
 
         createRoomButton.setOnClickListener((e) -> {
-            // TODO: Go to create room fragment
             startActivity(new Intent(MainActivity.this,RestaurantFiltering.class));
         });
 
         joinRoomButton.setOnClickListener((e) -> {
             // TODO: Go to join room fragment
-            startActivity(new Intent(MainActivity.this,JoinARoomLoggedIn.class));
+            // startActivity(new Intent(MainActivity.this,JoinARoomLoggedIn.class));
             //TODO: hook up createRoomButton
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage("Join room functionality not yet implemented.");
+            alertDialogBuilder.create().show();
         });
 
         // Burger
@@ -151,6 +155,7 @@ public class MainActivity extends AppCompatActivity
         } else {
             //super.onBackPressed();
         }
+        setTitle("Home");
     }
 
     @Override

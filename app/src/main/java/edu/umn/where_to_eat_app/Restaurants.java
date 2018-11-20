@@ -73,7 +73,7 @@ public class Restaurants {
         }
 
         if(rating == -1.0) {
-            rating = 5.0;
+            rating = 0.0;
         }
 
         if(money == -1.0) {
@@ -82,7 +82,6 @@ public class Restaurants {
 
         // clear filtered list
         filteredRestaurants = new ArrayList<>();
-
 
         for(Restaurant r : restaurantArrayList) {
             if(r.getDistance() <= distance && r.getRating() >= rating && r.getDollars() <= money) {

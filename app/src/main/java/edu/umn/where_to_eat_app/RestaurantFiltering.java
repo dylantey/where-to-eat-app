@@ -1,5 +1,6 @@
 package edu.umn.where_to_eat_app;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,10 @@ public class RestaurantFiltering extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.restaurant_filtering);
+
+        setTitle("Select Filter Criteria");
+
 
         Spinner filterSpinner = findViewById(R.id.filterSpinner);
         Button[] filterPrice = new Button[] {
@@ -38,14 +43,18 @@ public class RestaurantFiltering extends AppCompatActivity{
         for(int i = 0; i < 4; i++) {
             final int index = i;
             filterPrice[i].setOnClickListener((e) -> {
+                for(Button b : filterPrice) {
+                    b.setBackgroundResource(android.R.drawable.btn_default);
+                    b.setTextColor(getResources().getColor(R.color.black));
+                }
                 if(price == index + 1) {
                     price = -1;
                     filterPrice[index].setBackgroundResource(android.R.drawable.btn_default);
-                    filterRating[index].setTextColor(getResources().getColor(R.color.black));
+                    filterPrice[index].setTextColor(getResources().getColor(R.color.black));
                 } else {
                     price = index + 1;
-                    filterRating[index].setBackgroundColor(getResources().getColor(R.color.darkRed));
-                    filterRating[index].setTextColor(getResources().getColor(R.color.white));
+                    filterPrice[index].setBackgroundColor(getResources().getColor(R.color.darkRed));
+                    filterPrice[index].setTextColor(getResources().getColor(R.color.white));
                 }
             });
         }
@@ -53,12 +62,16 @@ public class RestaurantFiltering extends AppCompatActivity{
         for(int i = 0; i < 5; i++) {
             final int index = i;
             filterRating[i].setOnClickListener((e) -> {
+                for(Button b : filterRating) {
+                    b.setBackgroundResource(android.R.drawable.btn_default);
+                    b.setTextColor(getResources().getColor(R.color.black));
+                }
                 if(rating == index + 1) {
                     rating = -1;
                     filterRating[index].setBackgroundResource(android.R.drawable.btn_default);
                     filterRating[index].setTextColor(getResources().getColor(R.color.black));
                 } else {
-                    price = index + 1;
+                    rating = index + 1;
                     filterRating[index].setBackgroundColor(getResources().getColor(R.color.darkRed));
                     filterRating[index].setTextColor(getResources().getColor(R.color.white));
                 }
@@ -68,13 +81,26 @@ public class RestaurantFiltering extends AppCompatActivity{
         submitButton.setOnClickListener((e) -> {
 
 
+            String distString = filterDistance.getText().toString();
+            double distance = -1;
+            if(!distString.equals("")) {
+                distance = Double.parseDouble(filterDistance.getText().toString());
+            }
+
             String cuisine = String.valueOf(filterSpinner.getSelectedItem()).toUpperCase().replace(' ', '_');
-            Restaurants.type cuisineEnum = Restaurants.type.valueOf(cuisine);
-            double distance = Double.parseDouble(filterDistance.getText().toString());
-
-            Restaurants.filter(distance, rating, price, cuisineEnum);
-
-            startActivity(new Intent(RestaurantFiltering.this, InformationPage.class));
+            if(!cuisine.equals("---")) {
+                Restaurants.type cuisineEnum = Restaurants.type.valueOf(cuisine);
+                Restaurants.filter(distance, rating, price, cuisineEnum);
+            } else {
+                Restaurants.filter(distance, rating, price);
+            }
+            if(Restaurants.getFilteredRestaurants().size() == 0) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setMessage("No results found!\nTry to widen search criteria.");
+                alertDialogBuilder.create().show();
+            } else {
+                startActivity(new Intent(RestaurantFiltering.this, InformationPage.class));
+            }
         });
     }
 }
