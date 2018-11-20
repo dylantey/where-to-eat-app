@@ -16,5 +16,5 @@
     <string name="no_way">No Way</string>
     <string name="maybe">Maybe</string>
     <string name="yes">Yes</string>
-
+    <string name="hello_blank_fragment">Hello</string>
 </resources>

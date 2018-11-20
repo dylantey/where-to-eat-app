@@ -102,15 +102,14 @@ public class MainActivity extends AppCompatActivity
         Button joinRoomButton = findViewById(R.id.joinRoomButton);
 
         createRoomButton.setOnClickListener((e) -> {
-            //TODO: hoop up createRoomButton
+            // TODO: Go to create room fragment
+            startActivity(new Intent(MainActivity.this,VotingResults.class));
         });
 
         joinRoomButton.setOnClickListener((e) -> {
-            //TODO: hook up joinRoomButton
-            //starts InformationPage (select which restaurants to vote on. for testing
-            Intent infoPageIntent = new Intent(this, InformationPage.class);
-            startActivity(infoPageIntent);
-
+            // TODO: Go to join room fragment
+            startActivity(new Intent(MainActivity.this,JoinARoomLoggedIn.class));
+            //TODO: hook up createRoomButton
         });
 
         // Burger
