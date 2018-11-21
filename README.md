@@ -1,5 +1,5 @@
 # Where to Eat App
-<img src="https://img.shields.io/badge/Version-0.0.1-brightgreen.svg" alt="Latest version">
+<img src="https://img.shields.io/badge/Version-0.1-brightgreen.svg" alt="Latest version">
 
 ## About
 Android application project for the Fall 2018 University of Minnesota course:
