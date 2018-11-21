@@ -1,6 +1,7 @@
 package edu.umn.where_to_eat_app;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -67,8 +68,13 @@ public class VotingResults extends AppCompatActivity{
         });
 
         directionsButton.setOnClickListener((e) -> {
-            // TODO: Go to join a friends room fragment
-        });
+            Uri gmmIntentUri = Uri.parse("google.navigation:q=" + winner.getName() +
+                    " " + winner.getAddress());
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(mapIntent);
+            }});
 
         homeButton.setOnClickListener((e) -> {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
