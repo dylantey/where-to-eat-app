@@ -8,8 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import java.util.ArrayList;
-
 public class RestaurantFiltering extends AppCompatActivity{
 
     private int price = -1;
@@ -21,6 +19,7 @@ public class RestaurantFiltering extends AppCompatActivity{
         setContentView(R.layout.restaurant_filtering);
 
         setTitle("Select Filter Criteria");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         Spinner filterSpinner = findViewById(R.id.filterSpinner);
@@ -44,12 +43,12 @@ public class RestaurantFiltering extends AppCompatActivity{
             final int index = i;
             filterPrice[i].setOnClickListener((e) -> {
                 for(Button b : filterPrice) {
-                    b.setBackgroundResource(android.R.drawable.btn_default);
+                    b.setBackgroundColor(getResources().getColor(R.color.lightGray));
                     b.setTextColor(getResources().getColor(R.color.black));
                 }
                 if(price == index + 1) {
                     price = -1;
-                    filterPrice[index].setBackgroundResource(android.R.drawable.btn_default);
+                    filterPrice[index].setBackgroundColor(getResources().getColor(R.color.lightGray));
                     filterPrice[index].setTextColor(getResources().getColor(R.color.black));
                 } else {
                     price = index + 1;
@@ -63,12 +62,12 @@ public class RestaurantFiltering extends AppCompatActivity{
             final int index = i;
             filterRating[i].setOnClickListener((e) -> {
                 for(Button b : filterRating) {
-                    b.setBackgroundResource(android.R.drawable.btn_default);
+                    b.setBackgroundColor(getResources().getColor(R.color.lightGray));
                     b.setTextColor(getResources().getColor(R.color.black));
                 }
                 if(rating == index + 1) {
                     rating = -1;
-                    filterRating[index].setBackgroundResource(android.R.drawable.btn_default);
+                    filterRating[index].setBackgroundColor(getResources().getColor(R.color.lightGray));
                     filterRating[index].setTextColor(getResources().getColor(R.color.black));
                 } else {
                     rating = index + 1;
@@ -102,5 +101,11 @@ public class RestaurantFiltering extends AppCompatActivity{
                 startActivity(new Intent(RestaurantFiltering.this, InformationPage.class));
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 }
