@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -178,5 +180,36 @@ public class ComponentFactory {
         });
 
         return ll;
+    }
+
+    public static View[] makeVotingBox(Restaurant restaurant, Activity context) {
+        // 0 is restaurant info
+        // 1 is button container
+        // 2 3 4 are buttons
+        View[] ret = new View[5];
+        ret[0] = makeRestaurantBox(restaurant, context);
+        ret[0].setOnClickListener(null);
+
+        Button buttonNo = new Button(context);
+        buttonNo.setText("No");
+        Button buttonMaybe = new Button(context);
+        buttonMaybe.setText("Maybe");
+        Button buttonYes = new Button(context);
+        buttonYes.setText("Yes");
+
+        LinearLayout buttonContainer = new LinearLayout(context);
+        buttonContainer.setOrientation(LinearLayout.HORIZONTAL);
+        buttonContainer.addView(buttonNo);
+        buttonContainer.addView(buttonMaybe);
+        buttonContainer.addView(buttonYes);
+        buttonContainer.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        buttonContainer.setGravity(Gravity.CENTER_HORIZONTAL);
+
+        ret[1] = buttonContainer;
+        ret[2] = buttonNo;
+        ret[3] = buttonMaybe;
+        ret[4] = buttonYes;
+
+        return ret;
     }
 }

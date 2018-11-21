@@ -13,21 +13,19 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 
 import edu.umn.where_to_eat_app.data.Restaurant;
+import edu.umn.where_to_eat_app.data.Restaurants;
 import edu.umn.where_to_eat_app.utils.ComponentFactory;
 
 public class InfoPageAdapter extends RecyclerView.Adapter<InfoPageHolder>{
 
     Context context;
     ArrayList<Restaurant> restaurants;
-    ArrayList<Restaurant> checkedRestaurants;
 
     public InfoPageAdapter(Context c, ArrayList<Restaurant> restaurants) {
         this.context = c;
         this.restaurants = restaurants;
-        this.checkedRestaurants = new ArrayList<>();
     }
 
-    //VIEWHOLDER is intitialized
     @NonNull
     @Override
     public InfoPageHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -49,12 +47,12 @@ public class InfoPageAdapter extends RecyclerView.Adapter<InfoPageHolder>{
         holder.getComponent().setOnClickListener((e) -> {
             if(holder.getSelected()) {
                 holder.getComponent().setBackgroundColor(Color.rgb(250, 250, 250));
-                checkedRestaurants.remove(restaurants.get(position));
+                Restaurants.selectedRemove(restaurants.get(position));
                 holder.setSelected(false);
 
             } else {
                 holder.getComponent().setBackgroundColor(Color.rgb(0, 204, 0));
-                checkedRestaurants.add(restaurants.get(position));
+                Restaurants.selectedAdd(restaurants.get(position));
                 holder.setSelected(true);
             }
 

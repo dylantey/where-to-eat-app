@@ -1,127 +1,74 @@
 package edu.umn.where_to_eat_app;
 
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-/*
-public class JoinARoom extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.Button;
+import android.widget.Toast;
+
+import java.util.Arrays;
+
+import edu.umn.where_to_eat_app.data.Restaurants;
+import edu.umn.where_to_eat_app.data.Users;
+
+public class VotingScreen extends AppCompatActivity {
+
+    public int[] weights = new int[Restaurants.getSelectedRestaurants().size()];
+    private VotingAdapter adapter;
+    private int ballot = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.join_a_room);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.voting_screen);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+        setTitle("Voting Screen (Ballot 1)");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Adapter
+        adapter = new VotingAdapter(this);
+
+        //Recycler
+        RecyclerView rv = findViewById(R.id.recyclerView);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setItemAnimator(new DefaultItemAnimator());
+
+        //set adapter
+        rv.setAdapter(adapter);
+
+
+        Button nextBallotButton = findViewById(R.id.nextBallotButton);
+        Button finishButton = findViewById(R.id.finishButton);
+
+        nextBallotButton.setOnClickListener((e)->{
+            for(int i = 0; i < weights.length; i++) {
+                weights[i] += adapter.getWeights()[i];
             }
+            adapter = new VotingAdapter(this);
+            rv.setAdapter(adapter);
+            setTitle("Voting Screen (Ballot " + (++ballot) + ")");
+            Toast.makeText(VotingScreen.this, Arrays.toString(weights), Toast.LENGTH_SHORT).show();
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        finishButton.setOnClickListener((e)->{
+            for(int i = 0; i < weights.length; i++) {
+                weights[i] += adapter.getWeights()[i];
+            }
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+            //TODO: Goto results
+                Intent i = new Intent(VotingScreen.this, VotingResults.class);
+                i.putExtra("Votes", weights);
+                startActivity(i);
+        });
     }
 
     @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+    public boolean onSupportNavigateUp(){
+        finish();
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.home) {
-            // Handle the home action
-        } else if (id == R.id.profile) {
-
-        } else if (id == R.id.create_account) {
-
-        } else if (id == R.id.notification) {
-
-        } else if (id == R.id.settings) {
-
-        } else if (id == R.id.rate_us) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-}*/
-
-
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-public class VotingScreen extends Fragment{
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //returning our layout file
-        //change R.layout.yourlayoutfilename for each of your fragments
-        return inflater.inflate(R.layout.voting_screen, container, false);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("Voting");
     }
 }

@@ -1,10 +1,18 @@
 package edu.umn.where_to_eat_app;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
+import edu.umn.where_to_eat_app.data.Restaurant;
+import edu.umn.where_to_eat_app.data.Restaurants;
 import edu.umn.where_to_eat_app.main_screen.MainActivity;
 
 public class VotingResults extends AppCompatActivity{
@@ -13,23 +21,70 @@ public class VotingResults extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.voting_results);
 
-        Button map1Button = findViewById(R.id.Directions1);
-        Button map2Button = findViewById(R.id.Directions2);
-        Button homeButton = findViewById(R.id.Back);
+        // Get extra
+        int[] weights = null;
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            weights = extras.getIntArray("Votes");
+        }
+        int maxVotes = Integer.MIN_VALUE;
+        for(int i : weights) {
+            if(i > maxVotes) {
+                maxVotes = i;
+            }
+        }
+        ArrayList<Restaurant> winningRestaurants = new ArrayList<>();
+        for(int i = 0; i < Restaurants.getSelectedRestaurants().size(); i++) {
+            if(weights[i] == maxVotes) {
+                winningRestaurants.add(Restaurants.getSelectedRestaurants().get(i));
+            }
+        }
+        Collections.shuffle(winningRestaurants);
+        Restaurant winner = winningRestaurants.get(0);
 
-        map1Button.setOnClickListener((e) -> {
-            // TODO: Go to join a friends room fragment
-            startActivity(new Intent(VotingResults.this,Map.class));
+        // Update components
+        ImageView winnerImage = findViewById(R.id.winnerPic);
+        winnerImage.setImageResource(winner.getImgSrc());
+
+        TextView winnerText = findViewById(R.id.winnerName);
+        winnerText.setText(winner.getName());
+
+        TextView voteCount = findViewById(R.id.voteCount);
+        if(maxVotes == 1) {
+            voteCount.setText(maxVotes + " Vote");
+        } else {
+            voteCount.setText(maxVotes + " Votes");
+        }
+
+        Button infoButton = findViewById(R.id.infoButton);
+        Button directionsButton = findViewById(R.id.directionsButton);
+        Button homeButton = findViewById(R.id.homeButton);
+
+        infoButton.setOnClickListener((e) -> {
+            int idx = Restaurants.getRestaurantArrayList().indexOf(winner);
+            Intent i = new Intent(getApplicationContext(), RestaurantActivity.class);
+            i.putExtra("Index", idx);
+            startActivity(i);
         });
 
-        map2Button.setOnClickListener((e) -> {
-            // TODO: Go to join a friends room fragment
-            startActivity(new Intent(VotingResults.this,Map.class));
-        });
+        directionsButton.setOnClickListener((e) -> {
+            Uri gmmIntentUri = Uri.parse("google.navigation:q=" + winner.getName() +
+                    " " + winner.getAddress());
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(mapIntent);
+            }});
 
         homeButton.setOnClickListener((e) -> {
-            // TODO: Go to join a friends room fragment
-            startActivity(new Intent(VotingResults.this,MainActivity.class));
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        // do nothing
     }
 }

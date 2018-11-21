@@ -1,5 +1,6 @@
 package edu.umn.where_to_eat_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -9,36 +10,26 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.widget.Toast;
 
-import edu.umn.where_to_eat_app.data.Restaurant;
 import edu.umn.where_to_eat_app.data.Restaurants;
 
 public class InformationPage extends AppCompatActivity {
-
-    private StringBuffer sb = null;
-    private InfoPageAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.information_page);
-        this.adapter = new InfoPageAdapter(this, Restaurants.getFilteredRestaurants());
 
         setTitle("Select Restaurants to Add");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FloatingActionButton fab = findViewById(R.id.fab_info_page);
         fab.setOnClickListener(v -> {
-            sb = new StringBuffer();
-
-            for(Restaurant r : adapter.checkedRestaurants){
-                Restaurants.selectRestaurant(r.getName());
-                sb.append(r.getName());
-                sb.append("\n");
-            }
-            if(adapter.checkedRestaurants.size()>0){
-                Toast.makeText(InformationPage.this,sb.toString(), Toast.LENGTH_SHORT).show();
-            } else {
+            if(Restaurants.getSelectedRestaurants().size() == 0){
                 Toast.makeText(InformationPage.this,"Nothing selected", Toast.LENGTH_SHORT).show();
+            } else if(Restaurants.getSelectedRestaurants().size() == 1){
+                Toast.makeText(InformationPage.this,"Select 2 or more", Toast.LENGTH_SHORT).show();
+            } else {
+                startActivity(new Intent(InformationPage.this, VotingScreen.class));
             }
         });
 
@@ -49,9 +40,7 @@ public class InformationPage extends AppCompatActivity {
         //rv.setItemViewCacheSize(restaurants.restaurantSize());
 
         //set adapter
-        rv.setAdapter(adapter);
-
-
+        rv.setAdapter(new InfoPageAdapter(this, Restaurants.getFilteredRestaurants()));
     }
 
     @Override
