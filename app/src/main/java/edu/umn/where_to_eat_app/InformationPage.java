@@ -6,22 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 public class InformationPage extends AppCompatActivity {
 
     private StringBuffer sb = null;
-    private infoPageAdapter adapter;
+    private InfoPageAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.information_page);
-        this.adapter = new infoPageAdapter(this, Restaurants.getFilteredRestaurants());
+        this.adapter = new InfoPageAdapter(this, Restaurants.getFilteredRestaurants());
 
         setTitle("Select Restaurants to Add");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
