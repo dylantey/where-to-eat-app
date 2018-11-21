@@ -14,8 +14,8 @@ import android.widget.Toast;
 
 public class InformationPage extends AppCompatActivity {
 
-    StringBuffer sb = null;
-    infoPageAdapter adapter;
+    private StringBuffer sb = null;
+    private infoPageAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,31 +23,27 @@ public class InformationPage extends AppCompatActivity {
         setContentView(R.layout.information_page);
         this.adapter = new infoPageAdapter(this, Restaurants.getFilteredRestaurants());
 
+        setTitle("Select Restaurants to Add");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setTitle("Select Restaurants to Add to Pool");
+        FloatingActionButton fab = findViewById(R.id.fab_info_page);
+        fab.setOnClickListener(v -> {
+            sb = new StringBuffer();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_info_page);
-        fab.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                sb = new StringBuffer();
-
-                for(Restaurant r : adapter.checkedRestaurants){
-                    Restaurants.selectRestaurant(r.getName());
-                    sb.append(r.getName());
-                    sb.append("\n");
-                }
-                if(adapter.checkedRestaurants.size()>0){
-                    Toast.makeText(InformationPage.this,sb.toString(), Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(InformationPage.this,"Nothing selected", Toast.LENGTH_SHORT).show();
-                }
+            for(Restaurant r : adapter.checkedRestaurants){
+                Restaurants.selectRestaurant(r.getName());
+                sb.append(r.getName());
+                sb.append("\n");
+            }
+            if(adapter.checkedRestaurants.size()>0){
+                Toast.makeText(InformationPage.this,sb.toString(), Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(InformationPage.this,"Nothing selected", Toast.LENGTH_SHORT).show();
             }
         });
 
         //Recycler
-        RecyclerView rv = (RecyclerView) findViewById(R.id.recyclerView);
+        RecyclerView rv = findViewById(R.id.recyclerView);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setItemAnimator(new DefaultItemAnimator());
         //rv.setItemViewCacheSize(restaurants.restaurantSize());
@@ -66,17 +62,8 @@ public class InformationPage extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 }
