@@ -49,7 +49,6 @@ public class ProfilePage extends Fragment{
             ((LinearLayout) getView().findViewById(R.id.favoritesContainer)).addView(sad);
         } else {
             for (Restaurant r : Users.getCurrentUserObject().getFavoriteRestaurants()) {
-                System.out.println(r.getName());
                 LinearLayout ll = ComponentFactory.makeRestaurantBox(r, getActivity());
 
                 Space space = new Space(getContext());

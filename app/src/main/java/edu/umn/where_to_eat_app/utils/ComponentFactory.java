@@ -15,6 +15,7 @@ import edu.umn.where_to_eat_app.R;
 import edu.umn.where_to_eat_app.RestaurantActivity;
 import edu.umn.where_to_eat_app.data.Restaurant;
 import edu.umn.where_to_eat_app.data.Restaurants;
+import edu.umn.where_to_eat_app.data.User;
 import edu.umn.where_to_eat_app.data.Users;
 
 public class ComponentFactory {
@@ -27,7 +28,7 @@ public class ComponentFactory {
         // image
         ImageView image = new ImageView(activity.getApplicationContext());
         image.setImageResource(restaurant.getImgSrc());
-        image.setLayoutParams(new LinearLayout.LayoutParams(300,350));
+        image.setLayoutParams(new LinearLayout.LayoutParams(300, 350));
 
         Space spaceH = new Space(activity.getApplicationContext());
         spaceH.setLayoutParams(new LinearLayout.LayoutParams(50, 0));
@@ -43,7 +44,7 @@ public class ComponentFactory {
         nm.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200));
         nm.setText(restaurant.getName());
         nm.setGravity(Gravity.CENTER_VERTICAL);
-        if(Users.getCurrentUserObject().getFavoriteRestaurants().contains(restaurant)) {
+        if (Users.getCurrentUserObject().getFavoriteRestaurants().contains(restaurant)) {
             nm.setText("★ " + nm.getText());
         }
 
@@ -72,7 +73,7 @@ public class ComponentFactory {
         // dollars
         TextView dollars = new TextView(activity.getApplicationContext());
         String dollarString = "";
-        for(int i = 0; i < restaurant.getDollars(); i++) {
+        for (int i = 0; i < restaurant.getDollars(); i++) {
             dollarString += "$";
         }
         dollars.setText(dollarString);
@@ -83,7 +84,6 @@ public class ComponentFactory {
         dollars.setGravity(Gravity.CENTER);
 
         // cuisine
-
         HorizontalScrollView cuisineScroll = new HorizontalScrollView(activity.getApplicationContext());
 
         LinearLayout iiill = new LinearLayout(activity.getApplicationContext());
@@ -93,7 +93,7 @@ public class ComponentFactory {
         spaceIH.setLayoutParams(new LinearLayout.LayoutParams(50, 0));
 
         boolean first = true;
-        for(Restaurants.type t : restaurant.getCuisine()) {
+        for (Restaurants.type t : restaurant.getCuisine()) {
             TextView cuisine = new TextView(activity.getApplicationContext());
             cuisine.setText(t.toString().replace('_', ' '));
             cuisine.setBackgroundColor(Color.DKGRAY);
@@ -103,7 +103,7 @@ public class ComponentFactory {
             Space spaceIIH = new Space(activity.getApplicationContext());
             spaceIIH.setLayoutParams(new LinearLayout.LayoutParams(50, 0));
 
-            if(first) {
+            if (first) {
                 first = false;
             } else {
                 iiill.addView(spaceIIH);
@@ -131,6 +131,42 @@ public class ComponentFactory {
             activity.startActivity(i);
         });
 
+        return ll;
+    }
+
+    public static LinearLayout makeUserBox(User user, Activity activity) {
+        // Create LinearLayout
+        LinearLayout ll = new LinearLayout(activity.getApplicationContext());
+        ll.setOrientation(LinearLayout.HORIZONTAL);
+        ll.setPadding(10, 10, 10, 10);
+
+        // image
+        ImageView image = new ImageView(activity.getApplicationContext());
+        image.setImageResource(user.getImageSrc());
+        image.setLayoutParams(new LinearLayout.LayoutParams(300, 350));
+
+        Space spaceH = new Space(activity.getApplicationContext());
+        spaceH.setLayoutParams(new LinearLayout.LayoutParams(50, 0));
+
+        LinearLayout ill = new LinearLayout(activity.getApplicationContext());
+        ill.setOrientation(LinearLayout.VERTICAL);
+
+        TextView nickname = new TextView(activity.getApplicationContext());
+        nickname.setText(user.getNickname());
+        nickname.setTextSize(24);
+        nickname.setGravity(Gravity.BOTTOM);
+        nickname.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200));
+
+        TextView username = new TextView(activity.getApplicationContext());
+        username.setText("@" + user.getUsername());
+        username.setGravity(Gravity.TOP);
+        username.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100));
+
+        ill.addView(nickname);
+        ill.addView(username);
+        ll.addView(image);
+        ll.addView(spaceH);
+        ll.addView(ill);
         return ll;
     }
 }

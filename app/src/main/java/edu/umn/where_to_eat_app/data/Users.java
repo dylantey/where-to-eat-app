@@ -17,7 +17,13 @@ public class Users {
         users.add(new User("gille407", "02468", "Alex", R.drawable.p1_round_b));
         users.add(new User("hajix007", "quert", "Abdirahman", R.drawable.p1_round_b));
         users.add(new User("tey00002", "69420", "Dylan", R.drawable.p1_round_b));
-        users.add(new User("tutt1065", "password", "Nick", R.drawable.p1_round_b));
+        users.add(new User("tuttl065", "password", "Nick", R.drawable.p1_round_b));
+
+        // Ryan has many friends :^)
+        users.get(1).addFriend("gille407");
+        users.get(1).addFriend("hajix007");
+        users.get(1).addFriend("tey00002");
+        users.get(1).addFriend("tuttl065");
     }
 
     public static String createAccount(String username, String password, String name) {
@@ -75,5 +81,14 @@ public class Users {
             }
         }
         return false;
+    }
+
+    public static User getUserObject(String username) {
+        for(User u : users) {
+            if(u.getUsername().equals(username)) {
+                return u;
+            }
+        }
+        return null;
     }
 }
