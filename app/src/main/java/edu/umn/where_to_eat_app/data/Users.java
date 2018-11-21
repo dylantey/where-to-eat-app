@@ -12,18 +12,23 @@ public class Users {
     public Users () {
         new Restaurants();
 
+        users.clear();
         users.add(new User("???", "???", "???", R.drawable.p1_round_b));
         users.add(new User("clar1513", "01234", "Ryan", R.drawable.profile_ryan));
         users.add(new User("gille407", "02468", "Alex", R.drawable.profile_alex));
-        users.add(new User("hajix007", "quert", "Abdirahman", R.drawable.profile_haji));
+        users.add(new User("hajix007", "qwert", "Abdirahman", R.drawable.profile_haji));
         users.add(new User("tey00002", "69420", "Dylan", R.drawable.profile_dylan));
         users.add(new User("tuttl065", "password", "Nick", R.drawable.profile_nick));
 
-        // Ryan has many friends :^)
-        users.get(1).addFriend("gille407");
-        users.get(1).addFriend("hajix007");
-        users.get(1).addFriend("tey00002");
-        users.get(1).addFriend("tuttl065");
+        // All group members are friends.
+        for(int i = 1; i < users.size(); i++) {
+            users.get(i).getFriendsList().clear();
+            for(int j = 1; j < users.size(); j++) {
+                if(i != j) {
+                    users.get(i).addFriend(users.get(j).getUsername());
+                }
+            }
+        }
     }
 
     public static String createAccount(String username, String password, String name) {
