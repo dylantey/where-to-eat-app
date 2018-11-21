@@ -51,7 +51,6 @@ public class VotingScreen extends AppCompatActivity {
             adapter = new VotingAdapter(this);
             rv.setAdapter(adapter);
             setTitle("Voting Screen (Ballot " + (++ballot) + ")");
-            Toast.makeText(VotingScreen.this, Arrays.toString(weights), Toast.LENGTH_SHORT).show();
         });
 
         finishButton.setOnClickListener((e)->{
