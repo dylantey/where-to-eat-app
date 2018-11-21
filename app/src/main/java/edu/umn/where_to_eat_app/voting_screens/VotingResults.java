@@ -1,4 +1,4 @@
-package edu.umn.where_to_eat_app;
+package edu.umn.where_to_eat_app.voting_screens;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import edu.umn.where_to_eat_app.R;
+import edu.umn.where_to_eat_app.variable_pages.RestaurantActivity;
 import edu.umn.where_to_eat_app.data.Restaurant;
 import edu.umn.where_to_eat_app.data.Restaurants;
 import edu.umn.where_to_eat_app.main_screen.MainActivity;

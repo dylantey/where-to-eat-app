@@ -1,4 +1,4 @@
-package edu.umn.where_to_eat_app;
+package edu.umn.where_to_eat_app.voting_screens;
 
 
 import android.content.Intent;
@@ -8,12 +8,9 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
-import android.widget.Toast;
 
-import java.util.Arrays;
-
+import edu.umn.where_to_eat_app.R;
 import edu.umn.where_to_eat_app.data.Restaurants;
-import edu.umn.where_to_eat_app.data.Users;
 
 public class VotingScreen extends AppCompatActivity {
 

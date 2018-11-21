@@ -1,8 +1,7 @@
-package edu.umn.where_to_eat_app;
+package edu.umn.where_to_eat_app.voting_screens;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import edu.umn.where_to_eat_app.R;
 import edu.umn.where_to_eat_app.data.Restaurants;
 import edu.umn.where_to_eat_app.utils.ComponentFactory;
 

@@ -1,4 +1,4 @@
-package edu.umn.where_to_eat_app;
+package edu.umn.where_to_eat_app.voting_screens;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.widget.Toast;
 
+import edu.umn.where_to_eat_app.R;
 import edu.umn.where_to_eat_app.data.Restaurants;
 
 public class InformationPage extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package edu.umn.where_to_eat_app;
+package edu.umn.where_to_eat_app.voting_screens;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import edu.umn.where_to_eat_app.R;
 import edu.umn.where_to_eat_app.data.Restaurants;
 
 public class RestaurantFiltering extends AppCompatActivity{

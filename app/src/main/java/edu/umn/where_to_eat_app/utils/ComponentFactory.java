@@ -14,8 +14,8 @@ import android.widget.Space;
 import android.widget.TextView;
 
 import edu.umn.where_to_eat_app.R;
-import edu.umn.where_to_eat_app.RestaurantActivity;
-import edu.umn.where_to_eat_app.UserActivity;
+import edu.umn.where_to_eat_app.variable_pages.RestaurantActivity;
+import edu.umn.where_to_eat_app.variable_pages.UserActivity;
 import edu.umn.where_to_eat_app.data.Restaurant;
 import edu.umn.where_to_eat_app.data.Restaurants;
 import edu.umn.where_to_eat_app.data.User;

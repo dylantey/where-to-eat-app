@@ -1,8 +1,9 @@
-package edu.umn.where_to_eat_app;
+package edu.umn.where_to_eat_app.utils;
 
 import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 
+import edu.umn.where_to_eat_app.R;
 import edu.umn.where_to_eat_app.main_screen.Explore;
 import edu.umn.where_to_eat_app.main_screen.Friends;
 import edu.umn.where_to_eat_app.main_screen.ProfilePage;

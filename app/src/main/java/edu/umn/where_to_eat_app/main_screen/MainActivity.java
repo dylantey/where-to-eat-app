@@ -21,9 +21,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import edu.umn.where_to_eat_app.MenuHandler;
+import edu.umn.where_to_eat_app.utils.MenuHandler;
 import edu.umn.where_to_eat_app.R;
-import edu.umn.where_to_eat_app.RestaurantFiltering;
+import edu.umn.where_to_eat_app.voting_screens.RestaurantFiltering;
 import edu.umn.where_to_eat_app.data.Users;
 import edu.umn.where_to_eat_app.starting_screen.TitleScreen;
 

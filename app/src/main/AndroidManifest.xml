@@ -41,7 +41,7 @@
             android:theme="@style/AppTheme">
         </activity>
         <activity
-            android:name=".VotingResults"
+            android:name=".voting_screens.VotingResults"
             android:label="where-to-eat-app"
             android:theme="@style/AppThemeNoBar">
         </activity>
@@ -51,28 +51,28 @@
             android:theme="@style/AppTheme">
         </activity>
 		<activity
-            android:name=".RestaurantActivity"
+            android:name=".variable_pages.RestaurantActivity"
             android:label="where-to-eat-app"
             android:theme="@style/AppTheme">
         </activity>
         <activity
-            android:name=".RestaurantFiltering"
+            android:name=".voting_screens.RestaurantFiltering"
             android:label="where-to-eat-app"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan">
         </activity>
         <activity
-            android:name=".InformationPage"
+            android:name=".voting_screens.InformationPage"
             android:label="where-to-eat-app"
             android:theme="@style/AppTheme">
         </activity>
         <activity
-            android:name=".UserActivity"
+            android:name=".variable_pages.UserActivity"
             android:label="where-to-eat-app"
             android:theme="@style/AppTheme">
         </activity>
         <activity
-            android:name=".VotingScreen"
+            android:name=".voting_screens.VotingScreen"
             android:label="where-to-eat-app"
             android:theme="@style/AppTheme">
         </activity>

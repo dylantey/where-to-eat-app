@@ -63,7 +63,7 @@ public class Users {
         if(password.equals("")) { ret += "\nPassword required."; }
         if(exists)              { ret += "\nUsername taken."; }
         if(ret.equals("Error:\n")) {
-            users.add(new User(username, password, name, 0));
+            users.add(new User(username, password, name, R.drawable.p1_round_b));
             return "OK";
         } else {
             return ret;

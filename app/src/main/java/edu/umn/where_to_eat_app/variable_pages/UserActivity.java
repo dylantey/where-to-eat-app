@@ -1,4 +1,4 @@
-package edu.umn.where_to_eat_app;
+package edu.umn.where_to_eat_app.variable_pages;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,8 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 
+import edu.umn.where_to_eat_app.R;
 import edu.umn.where_to_eat_app.data.Restaurant;
-import edu.umn.where_to_eat_app.data.Restaurants;
 import edu.umn.where_to_eat_app.data.User;
 import edu.umn.where_to_eat_app.data.Users;
 import edu.umn.where_to_eat_app.utils.ComponentFactory;

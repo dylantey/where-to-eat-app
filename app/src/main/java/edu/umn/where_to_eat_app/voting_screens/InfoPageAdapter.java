@@ -1,4 +1,4 @@
-package edu.umn.where_to_eat_app;
+package edu.umn.where_to_eat_app.voting_screens;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
+import edu.umn.where_to_eat_app.R;
 import edu.umn.where_to_eat_app.data.Restaurant;
 import edu.umn.where_to_eat_app.data.Restaurants;
 import edu.umn.where_to_eat_app.utils.ComponentFactory;
