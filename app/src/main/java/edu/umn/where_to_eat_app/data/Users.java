@@ -29,6 +29,25 @@ public class Users {
                 }
             }
         }
+
+        getUserObject("tey00002").addFavoriteRestaurant("Buffalo Wild Wings");
+        getUserObject("tey00002").addFavoriteRestaurant("Chick-Fil-A");
+        getUserObject("tey00002").addFavoriteRestaurant("My Burger");
+
+        getUserObject("hajix007").addFavoriteRestaurant("Haiku");
+        getUserObject("hajix007").addFavoriteRestaurant("Ichiddo Ramen");
+        getUserObject("hajix007").addFavoriteRestaurant("Chipotle Mexican Grill");
+
+        getUserObject("gille407").addFavoriteRestaurant("Blaze Pizza");
+        getUserObject("gille407").addFavoriteRestaurant("Bar Luchador");
+        getUserObject("gille407").addFavoriteRestaurant("My Burger");
+
+        getUserObject("tuttl065").addFavoriteRestaurant("McDonald's");
+        getUserObject("tuttl065").addFavoriteRestaurant("Chipotle Mexican Grill");
+        getUserObject("tuttl065").addFavoriteRestaurant("Blaze Pizza");
+
+
+
     }
 
     public static String createAccount(String username, String password, String name) {
@@ -96,4 +115,8 @@ public class Users {
         }
         return null;
     }
+
+    public static User getUserByIndex(int idx) { return users.get(idx); }
+
+    public static int indexOf(User user) { return users.indexOf(user); }
 }

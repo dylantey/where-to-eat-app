@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import edu.umn.where_to_eat_app.R;
 import edu.umn.where_to_eat_app.RestaurantActivity;
+import edu.umn.where_to_eat_app.UserActivity;
 import edu.umn.where_to_eat_app.data.Restaurant;
 import edu.umn.where_to_eat_app.data.Restaurants;
 import edu.umn.where_to_eat_app.data.User;
@@ -167,6 +168,15 @@ public class ComponentFactory {
         ll.addView(image);
         ll.addView(spaceH);
         ll.addView(ill);
+
+        ll.setOnClickListener((e) -> {
+            int idx = Users.indexOf(user);
+
+            Intent i = new Intent(activity, UserActivity.class);
+            i.putExtra("Index", idx);
+            activity.startActivity(i);
+        });
+
         return ll;
     }
 }
