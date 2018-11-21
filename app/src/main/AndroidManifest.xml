@@ -43,7 +43,7 @@
         <activity
             android:name=".VotingResults"
             android:label="where-to-eat-app"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppThemeNoBar">
         </activity>
         <activity
             android:name=".JoinAFriendsRoom"
@@ -68,6 +68,11 @@
         </activity>
         <activity
             android:name=".UserActivity"
+            android:label="where-to-eat-app"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".VotingScreen"
             android:label="where-to-eat-app"
             android:theme="@style/AppTheme">
         </activity>
