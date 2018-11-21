@@ -14,10 +14,10 @@ public class Users {
 
         users.add(new User("???", "???", "???", R.drawable.p1_round_b));
         users.add(new User("clar1513", "01234", "Ryan", R.drawable.profile_ryan));
-        users.add(new User("gille407", "02468", "Alex", R.drawable.p1_round_b));
-        users.add(new User("hajix007", "quert", "Abdirahman", R.drawable.p1_round_b));
-        users.add(new User("tey00002", "69420", "Dylan", R.drawable.p1_round_b));
-        users.add(new User("tuttl065", "password", "Nick", R.drawable.p1_round_b));
+        users.add(new User("gille407", "02468", "Alex", R.drawable.profile_alex));
+        users.add(new User("hajix007", "quert", "Abdirahman", R.drawable.profile_haji));
+        users.add(new User("tey00002", "69420", "Dylan", R.drawable.profile_dylan));
+        users.add(new User("tuttl065", "password", "Nick", R.drawable.profile_nick));
 
         // Ryan has many friends :^)
         users.get(1).addFriend("gille407");
