@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
+import edu.umn.where_to_eat_app.main_screen.MainActivity;
+
 public class JoinARoomLoggedIn extends AppCompatActivity{
 
     @Override

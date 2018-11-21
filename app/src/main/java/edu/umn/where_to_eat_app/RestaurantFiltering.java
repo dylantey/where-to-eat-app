@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import edu.umn.where_to_eat_app.data.Restaurants;
+
 public class RestaurantFiltering extends AppCompatActivity{
 
     private int price = -1;

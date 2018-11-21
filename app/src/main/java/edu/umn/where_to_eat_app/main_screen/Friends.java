@@ -1,4 +1,4 @@
-package edu.umn.where_to_eat_app;
+package edu.umn.where_to_eat_app.main_screen;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -108,7 +108,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class friends extends Fragment {
+import edu.umn.where_to_eat_app.R;
+
+public class Friends extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

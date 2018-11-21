@@ -1,4 +1,4 @@
-package edu.umn.where_to_eat_app;
+package edu.umn.where_to_eat_app.main_screen;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,7 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Space;
-import android.widget.TextView;
+
+import edu.umn.where_to_eat_app.R;
+import edu.umn.where_to_eat_app.data.Restaurant;
+import edu.umn.where_to_eat_app.data.Restaurants;
+import edu.umn.where_to_eat_app.utils.ComponentFactory;
 
 public class Explore extends android.support.v4.app.Fragment {
 

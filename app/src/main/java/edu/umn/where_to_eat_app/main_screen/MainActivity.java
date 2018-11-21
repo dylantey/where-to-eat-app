@@ -1,4 +1,4 @@
-package edu.umn.where_to_eat_app;
+package edu.umn.where_to_eat_app.main_screen;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -21,7 +21,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import edu.umn.where_to_eat_app.MenuHandler;
+import edu.umn.where_to_eat_app.R;
+import edu.umn.where_to_eat_app.RestaurantFiltering;
+import edu.umn.where_to_eat_app.data.Users;
+import edu.umn.where_to_eat_app.starting_screen.TitleScreen;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -55,7 +59,7 @@ public class MainActivity extends AppCompatActivity
 
 
         } else {
-            startActivityForResult(new Intent(MainActivity.this, Login.class), 1);
+            startActivityForResult(new Intent(MainActivity.this, TitleScreen.class), 1);
         }
 
         // More stuff

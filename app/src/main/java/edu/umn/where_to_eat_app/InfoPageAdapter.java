@@ -12,6 +12,9 @@ import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
+import edu.umn.where_to_eat_app.data.Restaurant;
+import edu.umn.where_to_eat_app.utils.ComponentFactory;
+
 public class InfoPageAdapter extends RecyclerView.Adapter<InfoPageHolder>{
 
     Context context;

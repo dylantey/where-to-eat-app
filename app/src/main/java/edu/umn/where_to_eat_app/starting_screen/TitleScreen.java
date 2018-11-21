@@ -1,4 +1,4 @@
-package edu.umn.where_to_eat_app;
+package edu.umn.where_to_eat_app.starting_screen;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
-public class Login extends AppCompatActivity {
+import edu.umn.where_to_eat_app.R;
+
+public class TitleScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +40,10 @@ public class Login extends AppCompatActivity {
     private void setActivity(String s) {
         switch(s) {
             case "login":
-                startActivityForResult(new Intent(Login.this, LoginScreen.class), 10);
+                startActivityForResult(new Intent(TitleScreen.this, LoginScreen.class), 10);
                 break;
             case "register":
-                startActivity(new Intent(Login.this, RegisterScreen.class));
+                startActivity(new Intent(TitleScreen.this, RegisterScreen.class));
                 break;
             default:
                 break;

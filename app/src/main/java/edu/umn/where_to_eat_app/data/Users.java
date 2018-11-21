@@ -1,8 +1,8 @@
-package edu.umn.where_to_eat_app;
-
-import android.content.res.Resources;
+package edu.umn.where_to_eat_app.data;
 
 import java.util.ArrayList;
+
+import edu.umn.where_to_eat_app.R;
 
 public class Users {
 

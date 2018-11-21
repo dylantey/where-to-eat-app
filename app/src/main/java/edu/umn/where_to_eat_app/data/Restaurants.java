@@ -1,8 +1,10 @@
-package edu.umn.where_to_eat_app;
+package edu.umn.where_to_eat_app.data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+
+import edu.umn.where_to_eat_app.R;
 
 public class Restaurants {
 

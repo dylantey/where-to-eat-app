@@ -1,6 +1,4 @@
-package edu.umn.where_to_eat_app;
-
-import android.support.annotation.NonNull;
+package edu.umn.where_to_eat_app.data;
 
 public class Restaurant implements Comparable{
     private String name;

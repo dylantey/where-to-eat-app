@@ -5,14 +5,15 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 import android.net.Uri;
 
-import org.w3c.dom.Text;
+import edu.umn.where_to_eat_app.data.Restaurant;
+import edu.umn.where_to_eat_app.data.Restaurants;
+import edu.umn.where_to_eat_app.data.Users;
 
 public class RestaurantActivity extends AppCompatActivity {
 

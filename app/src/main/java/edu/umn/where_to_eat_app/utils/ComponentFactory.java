@@ -1,10 +1,8 @@
-package edu.umn.where_to_eat_app;
+package edu.umn.where_to_eat_app.utils;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Parcelable;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
@@ -12,6 +10,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
+
+import edu.umn.where_to_eat_app.R;
+import edu.umn.where_to_eat_app.RestaurantActivity;
+import edu.umn.where_to_eat_app.data.Restaurant;
+import edu.umn.where_to_eat_app.data.Restaurants;
+import edu.umn.where_to_eat_app.data.Users;
 
 public class ComponentFactory {
     public static LinearLayout makeRestaurantBox(Restaurant restaurant, Activity activity) {

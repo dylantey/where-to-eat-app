@@ -1,4 +1,4 @@
-package edu.umn.where_to_eat_app;
+package edu.umn.where_to_eat_app.main_screen;
 
 import android.os.Bundle;
 import android.view.Gravity;
@@ -12,6 +12,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
+
+import edu.umn.where_to_eat_app.R;
+import edu.umn.where_to_eat_app.data.Restaurant;
+import edu.umn.where_to_eat_app.data.Users;
+import edu.umn.where_to_eat_app.utils.ComponentFactory;
 
 public class ProfilePage extends Fragment{
 

@@ -1,4 +1,4 @@
-package edu.umn.where_to_eat_app;
+package edu.umn.where_to_eat_app.starting_screen;
 
 
 import android.app.AlertDialog;
@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
+
+import edu.umn.where_to_eat_app.R;
+import edu.umn.where_to_eat_app.data.Users;
 
 public class LoginScreen extends AppCompatActivity {
 

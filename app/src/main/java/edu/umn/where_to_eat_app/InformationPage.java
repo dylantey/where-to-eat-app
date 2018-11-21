@@ -9,6 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.widget.Toast;
 
+import edu.umn.where_to_eat_app.data.Restaurant;
+import edu.umn.where_to_eat_app.data.Restaurants;
+
 public class InformationPage extends AppCompatActivity {
 
     private StringBuffer sb = null;
